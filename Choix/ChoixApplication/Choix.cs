@@ -31,23 +31,16 @@ namespace WindowsFormsApplication1
             // Remove done from original list
             //
             Array.Sort(doneContent);
-            int drawCount = 0;
-            foreach(string s in originalFileContent) {
+            String[] drawFrom = new String[0];
+            foreach (string s in originalFileContent) {
                 if (Array.BinarySearch(doneContent, s) < 0) {
-                    drawCount++;
+                    Array.Resize<String>(ref drawFrom, drawFrom.Length + 1);
+                    drawFrom[drawFrom.Length -1] = s;
                 }
             }
-            if (drawCount == 0) {
+            if (drawFrom.Length == 0) {
                 textBoxChoix.Text = "Toutes finies";
                 return;
-            }
-            int count = 0;
-            String[] drawFrom = new String[drawCount];
-            foreach (string s in originalFileContent)
-            {
-                if (Array.BinarySearch(doneContent, s) < 0) {
-                    drawFrom[count++] = s;
-                }
             }
             //
             // Do the draw
@@ -58,22 +51,15 @@ namespace WindowsFormsApplication1
 
         private static string[] ReadTextFile(string filename)
         {
-            int counter = 0;
             string line;
-            string[] theFileContent;
+            string[] theFileContent = new String[0];
             if (!File.Exists(filename)) {
                 return new String[0];
             }
             using (StreamReader file = new System.IO.StreamReader(filename)) {
                 while ((line = file.ReadLine()) != null) {
-                    counter++;
-                }
-            }
-            theFileContent = new String[counter];
-            counter = 0;
-            using (StreamReader file = new System.IO.StreamReader(filename)) {
-                while ((line = file.ReadLine()) != null) {
-                    theFileContent[counter++] = line;
+                    Array.Resize<String>(ref theFileContent, theFileContent.Length + 1);
+                    theFileContent[theFileContent.Length -1] = line;
                 }
             }
             return theFileContent;
