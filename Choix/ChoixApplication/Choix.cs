@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
 
         private void Choix_Load(object sender, EventArgs e)
         {
-
+            
             const string originalFile = @"files.txt";
             const string doneFile = @"passées.txt";
             //    
@@ -38,14 +38,20 @@ namespace WindowsFormsApplication1
                     drawFrom[drawFrom.Length -1] = s;
                 }
             }
-            if (drawFrom.Length == 0) {
-                textBoxChoix.Text = "Toutes finies";
-                return;
-            }
             //
             // Do the draw
             //
+            textBoxChoix.ReadOnly = true;
             textBoxChoix.Text = drawFrom[DateTime.Now.Millisecond % drawFrom.Length];
+            textBoxChoix.SelectionStart = textBoxChoix.Text.Length;
+            textBoxChoix.DeselectAll();
+            if (drawFrom.Length == 1)
+            {
+                textBoxChoix.BackColor = Color.White;
+                textBoxChoix.ForeColor = Color.Red;
+                File.Delete(doneFile);
+                return;
+            }
             File.AppendAllText(doneFile, doneContent.Length == 0 ? textBoxChoix.Text : Environment.NewLine + textBoxChoix.Text);
         }
 
