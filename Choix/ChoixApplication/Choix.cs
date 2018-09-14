@@ -42,6 +42,10 @@ namespace WindowsFormsApplication1
             // Do the draw
             //
             textBoxChoix.ReadOnly = true;
+            if (drawFrom.Length == 0) {
+                textBoxChoix.Text = "Pas de fichier source";
+                return;
+            }
             textBoxChoix.Text = drawFrom[DateTime.Now.Millisecond % drawFrom.Length];
             textBoxChoix.SelectionStart = textBoxChoix.Text.Length;
             textBoxChoix.DeselectAll();
