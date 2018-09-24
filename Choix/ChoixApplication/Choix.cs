@@ -25,8 +25,23 @@ namespace WindowsFormsApplication1
             const string originalFile = @"files.txt";
             const string doneFile = @"passées.txt";
             //    
-            string[] originalFileContent = ReadTextFile(originalFile);
+            //string[] originalFileContent = ReadTextFile(originalFile);
             string[] doneContent = ReadTextFile(doneFile);
+            string[] originalFileContent = new String[0];
+            //
+            foreach (string s in Directory.EnumerateDirectories(@"z:")) {
+                if (!s.Equals(@"z:$RECYCLE.BIN", StringComparison.InvariantCulture)) {
+                    if (s.Equals(@"z:new", StringComparison.InvariantCultureIgnoreCase)) {
+                        foreach(string sInner in Directory.EnumerateDirectories(@"z:new")) {
+                            AddToArray(ref originalFileContent, sInner);
+                        }
+                    }
+                    else {
+                        AddToArray(ref originalFileContent, s);
+                    }
+                }
+                string s1 = s;                   
+            }
             //
             // Remove done from original list
             //
@@ -73,6 +88,12 @@ namespace WindowsFormsApplication1
                 }
             }
             return theFileContent;
+        }
+
+        private static void AddToArray(ref string[] ar, String s)
+        {
+            Array.Resize<String>(ref ar, ar.Length + 1);
+            ar[ar.Length - 1] = s.Substring(2).Replace("\\", " - ");
         }
     }
 }
