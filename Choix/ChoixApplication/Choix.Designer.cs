@@ -36,7 +36,7 @@
             this.textBoxChoix.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxChoix.Location = new System.Drawing.Point(32, 41);
             this.textBoxChoix.Name = "textBoxChoix";
-            this.textBoxChoix.Size = new System.Drawing.Size(461, 29);
+            this.textBoxChoix.Size = new System.Drawing.Size(1097, 29);
             this.textBoxChoix.TabIndex = 0;
             this.textBoxChoix.Text = "Choix";
             // 
@@ -44,7 +44,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 89);
+            this.ClientSize = new System.Drawing.Size(1198, 89);
             this.Controls.Add(this.textBoxChoix);
             this.Name = "Choix";
             this.Text = "Choix";
