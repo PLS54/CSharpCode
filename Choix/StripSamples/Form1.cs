@@ -59,9 +59,8 @@ namespace StripSamples
             List<XmlNode> nodesToRemove = new List<XmlNode>();
             foreach (XmlNode file in files) {
                 string s = file.OuterXml;
-                if (file.NodeType == XmlNodeType.Element && file.Name.Equals("file") && file.Attributes[2].Value.Contains("sample")) {
+                if (file.NodeType == XmlNodeType.Element && file.Name.Equals("file") && (file.Attributes[2].Value.Contains("sample") || file.Attributes[2].Value.Contains("Sample"))) {
                     nodesToRemove.Add(file);
-                    int ii = 0;
                 }
 
             }
