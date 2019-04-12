@@ -1,0 +1,76 @@
+Release notes for the Competitive Curling Timer
+Copyright © 2010 by Pierre Sigouin
+
+Description:
+This application performs competitive curling timing and was written for the Junior Superspiel Bonspiel that is 
+held at the Granite Curling Club of Ottawa in the fall.
+
+Version History:
+
+1.0.1.0	-	First prototype
+1.0.2.0	-	First version tested on a real game
+1.0.3.0	-	Corrected issues found at first test
+				o	Space bar debounced, holding the space bar caused the repeat key to 
+					trigger multiple unwanted Start Timer functions.
+				o	Corrected time-outs issue where a rock was deduced from the throwing
+					team.
+				o	On extra ends reset time-outs count for each team to 1.
+				o	Rocks are now deducted at the start of the timing for the throwing
+					team.
+1.0.4.0	-	Corrected issues found while timing Scott Tournament of Heart.
+				o	Take exclusive use of the desktop
+				o	Remember the number of ends in the setting screens.
+				o	Use Visual Source Safe.
+1.0.5.0	-	Corrected issues found while timing Scott Tournament of Heart (more).
+				o	Make the Score Sheet dialog appear modal.
+				o	Distribute this Release Note with the installs.
+1.0.6.0	-	Improve trace logs (Feb 3, 2010)
+				O	Added registry entry TraceDetails
+1.0.7.0 -	Many improvements (Feb 4, 2020)
+				o	Refactoring the code 
+				o	Make the hammer icon disappear for the non last rock team
+				o	Better logs - Now TraceDetails level contains more details
+				o	Added new registry entry StartTimingDelay that  specifies the
+					amount of time to wait before re-enabling the Start Timing 
+					function, default to 8 seconds.
+				o	Stop all start timing including the button for the period specified
+					above.
+1.0.8.0	-	Bug fixes (Feb 5, 2010)
+				o	Fix how default values are returned from registry accessor function.
+				o	Display log level in log
+				o	Ensure TraceLevel is respected for Debug builds.
+1.0.9.0	-	Enhancements (Feb 7, 2010)
+				o	Code refactoring create new constants for items such as registry
+					entries and refresh periods.
+				o	Increase the main display refresh period to 0.1 seconds.
+				o	Create accelerator Ctrl + o for time-outs				
+1.0.10.0 -	Various modifications (Feb 8, 2010)
+				o	Remove button Start in-between ends timer. Now the Time-In 
+					function is used, this allows for no mouse usage and 
+					simplyfies the UI.
+				o	Now showing green, yellow and red dots bellow each timer.
+				o	Change location of log file to make it work with newer OS. 
+					Location is shown in the About Box.
+				o	Ensure that a Trace Log failure does not stop normal program 
+					operations.
+				o	Internal changes to the Background Workers to make them work 
+					as prescribed.
+				o	Change the Setups version numbers to reflect the main program
+					version number.
+1.0.11.0 -	Repair a dispay problem, where it briefly flahsed the wrong time following 
+			a Time-In (Feb 20, 2010)
+				o	Fix by fixing a cross-thread access to the time text boxes.
+1.0.12.0 - Refactoring and attemp to fix brief flash of wrong time on display (Feb 21, 2010)
+				o	Renamed a few methods.
+				o	Removed a few update (not required) to the display in order to fix
+					a condition that caused the time displayed to flash to the wrong time/
+1.0.13.0 - Many small fixes
+				o	Move the sound files to the soultion resources in order not to rely to
+					the system sound files.
+				o	Added a stop time feature that can be usefull when the free guard zone
+					is broken.
+				o	Move the mouse pointer to a safe position so that users do not 
+					accidentally hit one of the button when using a laptop pad.
+				o	Change the timing to comply with the 2011 rules.
+					
+				

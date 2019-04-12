@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sanford", "Sanford", "{65B60E00-9B67-47AD-B855-BD63036B25EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurlingTiming", "CurlingTiming.csproj", "{84BC0CAE-71A7-4E40-AFB6-281BAC9EABF6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C886A854-9A31-41B1-A481-F9AAA76BD017} = {C886A854-9A31-41B1-A481-F9AAA76BD017}
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CurlingTimingSetup", "Setup\CurlingTimingSetup\Timing.vdproj", "{84E9D330-A340-4BCC-8F62-D8E37E05F325}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CurlingTimingSetupDemoVersion", "Setup\CurlingTimingSetupDemoVersion\CurlingTimingSetupDemoVersion.vdproj", "{56137B46-36DD-47E4-B688-EE165A31517A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collection", "Sanford\Collections\Collection.csproj", "{664F8E4B-98F8-4BD6-BC14-3E7898308F30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateMachineToolkit", "Sanford\StateMachineToolkit\StateMachineToolkit.csproj", "{C886A854-9A31-41B1-A481-F9AAA76BD017}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C20F21FE-4731-4558-9AD0-83DFB44CFEE8} = {C20F21FE-4731-4558-9AD0-83DFB44CFEE8}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading", "Sanford\Threading\Threading.csproj", "{C20F21FE-4731-4558-9AD0-83DFB44CFEE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84BC0CAE-71A7-4E40-AFB6-281BAC9EABF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84BC0CAE-71A7-4E40-AFB6-281BAC9EABF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84BC0CAE-71A7-4E40-AFB6-281BAC9EABF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84BC0CAE-71A7-4E40-AFB6-281BAC9EABF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84E9D330-A340-4BCC-8F62-D8E37E05F325}.Debug|Any CPU.ActiveCfg = Debug
+		{84E9D330-A340-4BCC-8F62-D8E37E05F325}.Release|Any CPU.ActiveCfg = Release
+		{84E9D330-A340-4BCC-8F62-D8E37E05F325}.Release|Any CPU.Build.0 = Release
+		{56137B46-36DD-47E4-B688-EE165A31517A}.Debug|Any CPU.ActiveCfg = Debug
+		{56137B46-36DD-47E4-B688-EE165A31517A}.Release|Any CPU.ActiveCfg = Release
+		{56137B46-36DD-47E4-B688-EE165A31517A}.Release|Any CPU.Build.0 = Release
+		{664F8E4B-98F8-4BD6-BC14-3E7898308F30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664F8E4B-98F8-4BD6-BC14-3E7898308F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664F8E4B-98F8-4BD6-BC14-3E7898308F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664F8E4B-98F8-4BD6-BC14-3E7898308F30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C886A854-9A31-41B1-A481-F9AAA76BD017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C886A854-9A31-41B1-A481-F9AAA76BD017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C886A854-9A31-41B1-A481-F9AAA76BD017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C886A854-9A31-41B1-A481-F9AAA76BD017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C20F21FE-4731-4558-9AD0-83DFB44CFEE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C20F21FE-4731-4558-9AD0-83DFB44CFEE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C20F21FE-4731-4558-9AD0-83DFB44CFEE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C20F21FE-4731-4558-9AD0-83DFB44CFEE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{664F8E4B-98F8-4BD6-BC14-3E7898308F30} = {65B60E00-9B67-47AD-B855-BD63036B25EC}
+		{C886A854-9A31-41B1-A481-F9AAA76BD017} = {65B60E00-9B67-47AD-B855-BD63036B25EC}
+		{C20F21FE-4731-4558-9AD0-83DFB44CFEE8} = {65B60E00-9B67-47AD-B855-BD63036B25EC}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://plspersonal.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CurlingTiming.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = Sanford\\Collections\\Collection.csproj
+		SccProjectTopLevelParentUniqueName2 = Curling.sln
+		SccProjectName2 = Sanford/Collections
+		SccLocalPath2 = Sanford\\Collections
+		SccProjectUniqueName3 = Sanford\\StateMachineToolkit\\StateMachineToolkit.csproj
+		SccProjectTopLevelParentUniqueName3 = Curling.sln
+		SccProjectName3 = Sanford/StateMachineToolkit
+		SccLocalPath3 = Sanford\\StateMachineToolkit
+		SccProjectUniqueName4 = Sanford\\Threading\\Threading.csproj
+		SccProjectTopLevelParentUniqueName4 = Curling.sln
+		SccProjectName4 = Sanford/Threading
+		SccLocalPath4 = Sanford\\Threading
+		SccProjectUniqueName5 = Setup\\CurlingTimingSetup\\Timing.vdproj
+		SccProjectName5 = Setup/CurlingTimingSetup
+		SccLocalPath5 = Setup\\CurlingTimingSetup
+		SccProjectUniqueName6 = Setup\\CurlingTimingSetupDemoVersion\\CurlingTimingSetupDemoVersion.vdproj
+		SccProjectName6 = Setup/CurlingTimingSetupDemoVersion
+		SccLocalPath6 = Setup\\CurlingTimingSetupDemoVersion
+	EndGlobalSection
+EndGlobal
