@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.numericUpDownNoEnfants = new System.Windows.Forms.NumericUpDown();
@@ -274,8 +274,8 @@
 			// 
 			// dataGridView1
 			// 
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightBlue;
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightBlue;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Location = new System.Drawing.Point(12, 277);

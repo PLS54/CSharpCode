@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using System.Data.Odbc;
 using System.Collections;
 using System.Reflection;
+using System.Configuration;
 
 namespace SimpleCsharpCRUD
 {
@@ -24,7 +25,7 @@ namespace SimpleCsharpCRUD
 		private List<Control> EditControls { get; set; }
 		private Boolean NewData { get; set; }
 		//
-		private SqlConnection Connection = new SqlConnection("Data Source=localhost;Initial Catalog=FolkloreOAdhesions;Integrated Security=true;");
+		private SqlConnection Connection = new SqlConnection($"Data Source={ConfigurationManager.AppSettings["DataSource"]};Initial Catalog=FolkloreOAdhesions;Integrated Security=true;");
 		public Form1()
 		{
 			ID = -1;
@@ -328,6 +329,10 @@ namespace SimpleCsharpCRUD
 		private void ShowHideFamiliale()
 		{
 			StatusMembre sm = comboBoxTypeDeMembership.SelectedItem as StatusMembre;
+			if (sm == null)
+			{
+				return;
+			}
 			textBoxNomConjoint.Visible = true;
 			numericUpDownNoEnfants.Visible = true;
 			labelNomConjoint.Visible = true;
