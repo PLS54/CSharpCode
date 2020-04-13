@@ -24,7 +24,7 @@ namespace SimpleCsharpCRUD
 		private List<Control> EditControls { get; set; }
 		private Boolean NewData { get; set; }
 		//
-		private SqlConnection Connection = new SqlConnection("Data Source=PSIGOUIN;Initial Catalog=FolkloreOAdhesions;Integrated Security=true;");
+		private SqlConnection Connection = new SqlConnection("Data Source=localhost;Initial Catalog=FolkloreOAdhesions;Integrated Security=true;");
 		public Form1()
 		{
 			ID = -1;
@@ -342,6 +342,7 @@ namespace SimpleCsharpCRUD
 				labelNoEnfants.Visible = false;
 			}
 		}
+		//
 		private static string ConcatanateListOfString(List<string> list)
 		{
 			string retString = string.Empty;
