@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 //to our project using ODBC class
 using System.Data.Odbc;
 using System.Collections;
+using System.Reflection;
 
 namespace SimpleCsharpCRUD
 {
@@ -28,6 +29,7 @@ namespace SimpleCsharpCRUD
 		{
 			ID = -1;
 			InitializeComponent();
+			labelVersion.Text = $"Version : {typeof(Form1).Assembly.GetName().Version}";
 			InitializeEditControlList();//
 			InitializeComboBoxes();
 		}
@@ -35,7 +37,7 @@ namespace SimpleCsharpCRUD
             NewData = true;
             LoadData();
         }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewSelectionOccured(object sender, DataGridViewCellEventArgs e)
 		{
 			DataGridViewRow rows = dataGridView1.Rows[e.RowIndex];
 			ID = (int)rows.Cells["ID"].Value;
@@ -272,6 +274,7 @@ namespace SimpleCsharpCRUD
 			Connection.Close();
 			da.Dispose();
 			dt.Dispose();
+			dataGridView1.Rows[0].Selected = true;
 		}
 		private void UpdateData(string sql)
 		{
@@ -430,6 +433,14 @@ namespace SimpleCsharpCRUD
 			}
 
 			return daysToAdd;
+		}
+
+		private void textBoxNoMembre_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
 		}
 	}
 	internal class DescriptionControl

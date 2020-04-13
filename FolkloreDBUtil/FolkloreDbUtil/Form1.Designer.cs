@@ -24,9 +24,10 @@
         /// </summary>
         private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.numericUpDownNoEnfants = new System.Windows.Forms.NumericUpDown();
 			this.comboBoxChoixCourriel = new System.Windows.Forms.ComboBox();
 			this.comboBoxStatusMembre = new System.Windows.Forms.ComboBox();
 			this.comboBoxTypeDeMembership = new System.Windows.Forms.ComboBox();
@@ -46,6 +47,10 @@
 			this.textBoxNom = new System.Windows.Forms.TextBox();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBoxSansNoMembre = new System.Windows.Forms.CheckBox();
+			this.checkBoxAvecNoMembres = new System.Windows.Forms.CheckBox();
+			this.checkBoxActives = new System.Windows.Forms.CheckBox();
+			this.checkBoxEchue = new System.Windows.Forms.CheckBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.button4 = new System.Windows.Forms.Button();
 			this.textBoxWhereClause = new System.Windows.Forms.TextBox();
@@ -60,17 +65,13 @@
 			this.textBoxID = new System.Windows.Forms.TextBox();
 			this.dateTimeRenouvellemt = new System.Windows.Forms.DateTimePicker();
 			this.buttonAjout1An = new System.Windows.Forms.Button();
-			this.checkBoxEchue = new System.Windows.Forms.CheckBox();
-			this.checkBoxActives = new System.Windows.Forms.CheckBox();
-			this.checkBoxAvecNoMembres = new System.Windows.Forms.CheckBox();
-			this.checkBoxSansNoMembre = new System.Windows.Forms.CheckBox();
-			this.numericUpDownNoEnfants = new System.Windows.Forms.NumericUpDown();
+			this.labelVersion = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNoEnfants)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNoEnfants)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -93,12 +94,25 @@
 			this.groupBox1.Controls.Add(this.textBoxCourriel);
 			this.groupBox1.Controls.Add(this.textBoxPrenom);
 			this.groupBox1.Controls.Add(this.textBoxNom);
-			this.groupBox1.Location = new System.Drawing.Point(12, 99);
+			this.groupBox1.Location = new System.Drawing.Point(12, 126);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(715, 172);
-			this.groupBox1.TabIndex = 0;
+			this.groupBox1.Size = new System.Drawing.Size(715, 138);
+			this.groupBox1.TabIndex = 7;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Detil Informations";
+			this.groupBox1.Text = "Membre";
+			// 
+			// numericUpDownNoEnfants
+			// 
+			this.numericUpDownNoEnfants.Location = new System.Drawing.Point(550, 116);
+			this.numericUpDownNoEnfants.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+			this.numericUpDownNoEnfants.Name = "numericUpDownNoEnfants";
+			this.numericUpDownNoEnfants.Size = new System.Drawing.Size(37, 20);
+			this.numericUpDownNoEnfants.TabIndex = 17;
+			this.numericUpDownNoEnfants.ValueChanged += new System.EventHandler(this.ValeurChampModifier);
 			// 
 			// comboBoxChoixCourriel
 			// 
@@ -106,7 +120,7 @@
 			this.comboBoxChoixCourriel.Location = new System.Drawing.Point(521, 62);
 			this.comboBoxChoixCourriel.Name = "comboBoxChoixCourriel";
 			this.comboBoxChoixCourriel.Size = new System.Drawing.Size(166, 21);
-			this.comboBoxChoixCourriel.TabIndex = 10;
+			this.comboBoxChoixCourriel.TabIndex = 9;
 			this.comboBoxChoixCourriel.SelectedIndexChanged += new System.EventHandler(this.ValeurChampModifier);
 			// 
 			// comboBoxStatusMembre
@@ -115,7 +129,7 @@
 			this.comboBoxStatusMembre.Location = new System.Drawing.Point(522, 37);
 			this.comboBoxStatusMembre.Name = "comboBoxStatusMembre";
 			this.comboBoxStatusMembre.Size = new System.Drawing.Size(165, 21);
-			this.comboBoxStatusMembre.TabIndex = 9;
+			this.comboBoxStatusMembre.TabIndex = 5;
 			this.comboBoxStatusMembre.SelectedIndexChanged += new System.EventHandler(this.ValeurChampModifier);
 			// 
 			// comboBoxTypeDeMembership
@@ -124,7 +138,7 @@
 			this.comboBoxTypeDeMembership.Location = new System.Drawing.Point(89, 115);
 			this.comboBoxTypeDeMembership.Name = "comboBoxTypeDeMembership";
 			this.comboBoxTypeDeMembership.Size = new System.Drawing.Size(121, 21);
-			this.comboBoxTypeDeMembership.TabIndex = 9;
+			this.comboBoxTypeDeMembership.TabIndex = 13;
 			this.comboBoxTypeDeMembership.SelectedIndexChanged += new System.EventHandler(this.ValeurChampModifier);
 			// 
 			// label11
@@ -234,6 +248,7 @@
 			// 
 			// textBoxCourriel
 			// 
+			this.textBoxCourriel.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
 			this.textBoxCourriel.Location = new System.Drawing.Point(88, 62);
 			this.textBoxCourriel.Name = "textBoxCourriel";
 			this.textBoxCourriel.Size = new System.Drawing.Size(332, 20);
@@ -259,16 +274,16 @@
 			// 
 			// dataGridView1
 			// 
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightBlue;
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightBlue;
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Location = new System.Drawing.Point(12, 277);
+			this.dataGridView1.MultiSelect = false;
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.Size = new System.Drawing.Size(1111, 194);
-			this.dataGridView1.TabIndex = 7;
-			this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-			this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+			this.dataGridView1.TabIndex = 8;
+			this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSelectionOccured);
 			// 
 			// panel1
 			// 
@@ -286,7 +301,59 @@
 			this.panel1.Location = new System.Drawing.Point(-6, 486);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1129, 50);
-			this.panel1.TabIndex = 8;
+			this.panel1.TabIndex = 9;
+			// 
+			// checkBoxSansNoMembre
+			// 
+			this.checkBoxSansNoMembre.AutoSize = true;
+			this.checkBoxSansNoMembre.Checked = true;
+			this.checkBoxSansNoMembre.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxSansNoMembre.Location = new System.Drawing.Point(583, 28);
+			this.checkBoxSansNoMembre.Name = "checkBoxSansNoMembre";
+			this.checkBoxSansNoMembre.Size = new System.Drawing.Size(108, 17);
+			this.checkBoxSansNoMembre.TabIndex = 8;
+			this.checkBoxSansNoMembre.Text = "Sans no. membre";
+			this.checkBoxSansNoMembre.UseVisualStyleBackColor = true;
+			this.checkBoxSansNoMembre.CheckedChanged += new System.EventHandler(this.controlSearhChanged);
+			// 
+			// checkBoxAvecNoMembres
+			// 
+			this.checkBoxAvecNoMembres.AutoSize = true;
+			this.checkBoxAvecNoMembres.Checked = true;
+			this.checkBoxAvecNoMembres.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxAvecNoMembres.Location = new System.Drawing.Point(583, 10);
+			this.checkBoxAvecNoMembres.Name = "checkBoxAvecNoMembres";
+			this.checkBoxAvecNoMembres.Size = new System.Drawing.Size(109, 17);
+			this.checkBoxAvecNoMembres.TabIndex = 7;
+			this.checkBoxAvecNoMembres.Text = "Avec no. membre";
+			this.checkBoxAvecNoMembres.UseVisualStyleBackColor = true;
+			this.checkBoxAvecNoMembres.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
+			// 
+			// checkBoxActives
+			// 
+			this.checkBoxActives.AutoSize = true;
+			this.checkBoxActives.Checked = true;
+			this.checkBoxActives.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxActives.Location = new System.Drawing.Point(515, 12);
+			this.checkBoxActives.Name = "checkBoxActives";
+			this.checkBoxActives.Size = new System.Drawing.Size(61, 17);
+			this.checkBoxActives.TabIndex = 5;
+			this.checkBoxActives.Text = "Actives";
+			this.checkBoxActives.UseVisualStyleBackColor = true;
+			this.checkBoxActives.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
+			// 
+			// checkBoxEchue
+			// 
+			this.checkBoxEchue.AutoSize = true;
+			this.checkBoxEchue.Checked = true;
+			this.checkBoxEchue.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxEchue.Location = new System.Drawing.Point(515, 26);
+			this.checkBoxEchue.Name = "checkBoxEchue";
+			this.checkBoxEchue.Size = new System.Drawing.Size(62, 17);
+			this.checkBoxEchue.TabIndex = 6;
+			this.checkBoxEchue.Text = "Echues";
+			this.checkBoxEchue.UseVisualStyleBackColor = true;
+			this.checkBoxEchue.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
 			// 
 			// label12
 			// 
@@ -295,7 +362,7 @@
 			this.label12.Location = new System.Drawing.Point(357, 18);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(34, 16);
-			this.label12.TabIndex = 4;
+			this.label12.TabIndex = 3;
 			this.label12.Text = "Nom";
 			// 
 			// button4
@@ -306,7 +373,7 @@
 			this.button4.Location = new System.Drawing.Point(1032, 12);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(85, 29);
-			this.button4.TabIndex = 3;
+			this.button4.TabIndex = 9;
 			this.button4.Text = "&Exit";
 			this.button4.UseVisualStyleBackColor = false;
 			this.button4.Click += new System.EventHandler(this.buttonExit_Click);
@@ -316,7 +383,7 @@
 			this.textBoxWhereClause.Location = new System.Drawing.Point(397, 17);
 			this.textBoxWhereClause.Name = "textBoxWhereClause";
 			this.textBoxWhereClause.Size = new System.Drawing.Size(106, 20);
-			this.textBoxWhereClause.TabIndex = 5;
+			this.textBoxWhereClause.TabIndex = 4;
 			this.textBoxWhereClause.TextChanged += new System.EventHandler(this.controlSearhChanged);
 			this.textBoxWhereClause.Leave += new System.EventHandler(this.controlSearhChanged);
 			// 
@@ -362,9 +429,9 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(21, 12);
+			this.pictureBox1.Location = new System.Drawing.Point(21, 1);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(196, 104);
+			this.pictureBox1.Size = new System.Drawing.Size(196, 100);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox1.TabIndex = 8;
 			this.pictureBox1.TabStop = false;
@@ -376,16 +443,18 @@
 			this.label6.Location = new System.Drawing.Point(331, 34);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(73, 16);
-			this.label6.TabIndex = 0;
+			this.label6.TabIndex = 1;
 			this.label6.Text = "No. Membre";
 			// 
 			// textBoxNoMembre
 			// 
 			this.textBoxNoMembre.Location = new System.Drawing.Point(419, 33);
+			this.textBoxNoMembre.MaxLength = 4;
 			this.textBoxNoMembre.Name = "textBoxNoMembre";
 			this.textBoxNoMembre.Size = new System.Drawing.Size(106, 20);
-			this.textBoxNoMembre.TabIndex = 1;
+			this.textBoxNoMembre.TabIndex = 2;
 			this.textBoxNoMembre.TextChanged += new System.EventHandler(this.ValeurChampModifier);
+			this.textBoxNoMembre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNoMembre_KeyPress);
 			// 
 			// label10
 			// 
@@ -394,7 +463,7 @@
 			this.label10.Location = new System.Drawing.Point(271, 63);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(133, 16);
-			this.label10.TabIndex = 2;
+			this.label10.TabIndex = 3;
 			this.label10.Text = "Date de renouvellement";
 			// 
 			// errorProvider
@@ -416,7 +485,7 @@
 			this.dateTimeRenouvellemt.Location = new System.Drawing.Point(419, 59);
 			this.dateTimeRenouvellemt.Name = "dateTimeRenouvellemt";
 			this.dateTimeRenouvellemt.Size = new System.Drawing.Size(108, 20);
-			this.dateTimeRenouvellemt.TabIndex = 9;
+			this.dateTimeRenouvellemt.TabIndex = 4;
 			this.dateTimeRenouvellemt.ValueChanged += new System.EventHandler(this.ValeurChampModifier);
 			// 
 			// buttonAjout1An
@@ -424,81 +493,27 @@
 			this.buttonAjout1An.Location = new System.Drawing.Point(539, 59);
 			this.buttonAjout1An.Name = "buttonAjout1An";
 			this.buttonAjout1An.Size = new System.Drawing.Size(32, 19);
-			this.buttonAjout1An.TabIndex = 10;
+			this.buttonAjout1An.TabIndex = 5;
 			this.buttonAjout1An.Text = "+1";
 			this.buttonAjout1An.UseVisualStyleBackColor = true;
 			this.buttonAjout1An.Click += new System.EventHandler(this.buttonAjout1An_Click);
 			// 
-			// checkBoxEchue
+			// labelVersion
 			// 
-			this.checkBoxEchue.AutoSize = true;
-			this.checkBoxEchue.Checked = true;
-			this.checkBoxEchue.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxEchue.Location = new System.Drawing.Point(515, 26);
-			this.checkBoxEchue.Name = "checkBoxEchue";
-			this.checkBoxEchue.Size = new System.Drawing.Size(62, 17);
-			this.checkBoxEchue.TabIndex = 11;
-			this.checkBoxEchue.Text = "Echues";
-			this.checkBoxEchue.UseVisualStyleBackColor = true;
-			this.checkBoxEchue.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
-			// 
-			// checkBoxActives
-			// 
-			this.checkBoxActives.AutoSize = true;
-			this.checkBoxActives.Checked = true;
-			this.checkBoxActives.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxActives.Location = new System.Drawing.Point(515, 12);
-			this.checkBoxActives.Name = "checkBoxActives";
-			this.checkBoxActives.Size = new System.Drawing.Size(61, 17);
-			this.checkBoxActives.TabIndex = 12;
-			this.checkBoxActives.Text = "Actives";
-			this.checkBoxActives.UseVisualStyleBackColor = true;
-			this.checkBoxActives.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
-			// 
-			// checkBoxAvecNoMembres
-			// 
-			this.checkBoxAvecNoMembres.AutoSize = true;
-			this.checkBoxAvecNoMembres.Checked = true;
-			this.checkBoxAvecNoMembres.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxAvecNoMembres.Location = new System.Drawing.Point(583, 10);
-			this.checkBoxAvecNoMembres.Name = "checkBoxAvecNoMembres";
-			this.checkBoxAvecNoMembres.Size = new System.Drawing.Size(109, 17);
-			this.checkBoxAvecNoMembres.TabIndex = 13;
-			this.checkBoxAvecNoMembres.Text = "Avec no. membre";
-			this.checkBoxAvecNoMembres.UseVisualStyleBackColor = true;
-			this.checkBoxAvecNoMembres.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
-			// 
-			// checkBoxSansNoMembre
-			// 
-			this.checkBoxSansNoMembre.AutoSize = true;
-			this.checkBoxSansNoMembre.Checked = true;
-			this.checkBoxSansNoMembre.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxSansNoMembre.Location = new System.Drawing.Point(583, 28);
-			this.checkBoxSansNoMembre.Name = "checkBoxSansNoMembre";
-			this.checkBoxSansNoMembre.Size = new System.Drawing.Size(108, 17);
-			this.checkBoxSansNoMembre.TabIndex = 14;
-			this.checkBoxSansNoMembre.Text = "Sans no. membre";
-			this.checkBoxSansNoMembre.UseVisualStyleBackColor = true;
-			this.checkBoxSansNoMembre.CheckedChanged += new System.EventHandler(this.controlSearhChanged);
-			// 
-			// numericUpDownNoEnfants
-			// 
-			this.numericUpDownNoEnfants.Location = new System.Drawing.Point(550, 116);
-			this.numericUpDownNoEnfants.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-			this.numericUpDownNoEnfants.Name = "numericUpDownNoEnfants";
-			this.numericUpDownNoEnfants.Size = new System.Drawing.Size(37, 20);
-			this.numericUpDownNoEnfants.TabIndex = 11;
-			this.numericUpDownNoEnfants.ValueChanged += new System.EventHandler(this.ValeurChampModifier);
+			this.labelVersion.AutoSize = true;
+			this.labelVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelVersion.Location = new System.Drawing.Point(27, 99);
+			this.labelVersion.Name = "labelVersion";
+			this.labelVersion.Size = new System.Drawing.Size(51, 20);
+			this.labelVersion.TabIndex = 0;
+			this.labelVersion.Text = "label8";
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1135, 545);
+			this.Controls.Add(this.labelVersion);
 			this.Controls.Add(this.buttonAjout1An);
 			this.Controls.Add(this.dateTimeRenouvellemt);
 			this.Controls.Add(this.label10);
@@ -509,17 +524,18 @@
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.groupBox1);
+			this.MaximizeBox = false;
 			this.Name = "Form1";
-			this.Text = "Main Home";
+			this.Text = "Adhésions Folklore Outaouais";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNoEnfants)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDownNoEnfants)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -566,6 +582,7 @@
 		private System.Windows.Forms.CheckBox checkBoxAvecNoMembres;
 		private System.Windows.Forms.CheckBox checkBoxSansNoMembre;
 		private System.Windows.Forms.NumericUpDown numericUpDownNoEnfants;
+		private System.Windows.Forms.Label labelVersion;
 	}
 }
 
