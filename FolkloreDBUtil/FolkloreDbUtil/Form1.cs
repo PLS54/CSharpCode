@@ -192,20 +192,28 @@ namespace SimpleCsharpCRUD
 		}
 		private void InitComboWithDB(ComboBox combo, string tableName, string code, string description)
 		{
-			string s = $"SELECT {code}, {description} FROM {tableName}";
-			SqlCommand sqlCommand= new SqlCommand($"SELECT {code}, {description} FROM {tableName}", Connection);
-			Connection.Open();
-			SqlDataReader sqlReader = sqlCommand.ExecuteReader();
-			ArrayList statusMembres = new ArrayList();
-			while (sqlReader.Read())
+			try
 			{
-				statusMembres.Add(new StatusMembre((string)sqlReader[code], (string)sqlReader[description].ToString().TrimEnd(' ')));
+				string s = $"SELECT {code}, {description} FROM {tableName}";
+				SqlCommand sqlCommand = new SqlCommand($"SELECT {code}, {description} FROM {tableName}", Connection);
+				Connection.Open();
+				SqlDataReader sqlReader = sqlCommand.ExecuteReader();
+				ArrayList statusMembres = new ArrayList();
+				while (sqlReader.Read())
+				{
+					statusMembres.Add(new StatusMembre((string)sqlReader[code], (string)sqlReader[description].ToString().TrimEnd(' ')));
+				}
+				combo.DataSource = statusMembres;
+				combo.ValueMember = "CodeDeStatus";
+				combo.DisplayMember = description;
+				sqlReader.Close();
+				Connection.Close();
 			}
-			combo.DataSource = statusMembres;
-			combo.ValueMember = "CodeDeStatus";
-			combo.DisplayMember = description;
-			sqlReader.Close();
-			Connection.Close();
+			catch(Exception e)
+			{
+				MessageBox.Show(e.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				System.Environment.Exit(1);
+			}
 		}
 		private void LoadData()
 		{
