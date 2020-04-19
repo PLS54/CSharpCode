@@ -29,29 +29,28 @@ namespace WindowsFormsApplication3
 				Circle[index++] = new Tuple<double, double>(Math.Cos(angRad), Math.Sin(angRad));
 			}
 			Danseurs = new Danseur[8];
-			Danseurs[0] = new Danseur(Color.Blue, new Point(100, 100), 0, Circle);
-			Danseurs[1] = new Danseur(Color.Pink, new Point(80, 10), 0, Circle);
-			Danseurs[2] = new Danseur(Color.Blue, new Point(10, 50), 0, Circle);
-			Danseurs[3] = new Danseur(Color.Pink, new Point(60, 50), 0, Circle);
-			Danseurs[4] = new Danseur(Color.Blue, new Point(10, 90), 0, Circle);
-			Danseurs[5] = new Danseur(Color.Pink, new Point(60, 90), 0, Circle);
-			Danseurs[6] = new Danseur(Color.Blue, new Point(10, 130), 0, Circle);
-			Danseurs[7] = new Danseur(Color.Pink, new Point(60, 130), 0, Circle);
+			Danseurs[0] = new Danseur(Color.Blue, new Point(121, 280), 36, Circle);
+			Danseurs[1] = new Danseur(Color.Pink, new Point(185, 280), 36, Circle);
+			Danseurs[2] = new Danseur(Color.Blue, new Point(22, 110), 54, Circle);
+			Danseurs[3] = new Danseur(Color.Pink, new Point(22, 180), 54, Circle);
+			Danseurs[4] = new Danseur(Color.Blue, new Point(121, 25), 0, Circle);
+			Danseurs[5] = new Danseur(Color.Pink, new Point(185, 25), 0, Circle);
+			Danseurs[6] = new Danseur(Color.Blue, new Point(290, 110), 18, Circle);
+			Danseurs[7] = new Danseur(Color.Pink, new Point(290, 180), 18, Circle);
 
-
-
-			TimerCallback tcb = Update;
-			System.Threading.Timer testTimer = new System.Threading.Timer(tcb, null, 0, 50);
+			Update(null);
+			//TimerCallback tcb = Update;
+			//System.Threading.Timer testTimer = new System.Threading.Timer(tcb, null, 0, 50);
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
 		}
 
-//		private static int angle = 0;
 		private static int index = 0;
 		private void Update(Object source)
 		{
+			//int index = (int)source;
 			Bitmap bmp = new Bitmap(set1.Width, set1.Height);
 			using (Graphics g = Graphics.FromImage(bmp))
 			{
@@ -61,15 +60,16 @@ namespace WindowsFormsApplication3
 				double yScale = Circle[index++].Item2;
 				//xScale = 1.0;
 				//yScale = 1.0;
-				Danseur d = Danseurs[0];
-				d.CurrentPosition = new Point(150 + (int) Math.Round(100 * xScale), 150 + (int) Math.Round(100 * yScale));
-				d.Draw(g, new Point(0, 0), index * 3);
-				d = Danseurs[1];
-				d.CurrentPosition = new Point(100 + (int)Math.Round(75 * xScale), 100 + (int)Math.Round(75 * yScale));
-				d.Draw(g, new Point(0, 0), index * 1);
+
+
+				//Danseur d = Danseurs[0];
+				//d.CurrentPosition = new Point(150 + (int) Math.Round(100 * xScale), 150 + (int) Math.Round(100 * yScale));
+				//d.Draw(g, new Point(0, 0), index * 3);
+				//d = Danseurs[1];
+				//d.CurrentPosition = new Point(100 + (int)Math.Round(75 * xScale), 100 + (int)Math.Round(75 * yScale));
 				foreach (Danseur d1 in Danseurs)
 				{
-					//d.Draw(g, new Point(1, 0), 0);
+					d1.Draw(g, new Point(0, 0), d1.Angle);
 				}
 			}
 			set1.Image = bmp;
@@ -82,6 +82,14 @@ namespace WindowsFormsApplication3
 				Update(null);
 				Thread.Sleep(50);
 			}
+		}
+
+		private void set1_MouseClick(object sender, MouseEventArgs e)
+		{
+			Danseur d = Danseurs[((int)numericUpDownNumeroCouple.Value - 1) * 2];
+			d.CurrentPosition = new Point(e.X, e.Y);
+			Debug.WriteLine($"Mouse X: {e.X} Y: {e.Y}");
+			Update(numericUpDownAngle.Value);
 		}
 	}
 }

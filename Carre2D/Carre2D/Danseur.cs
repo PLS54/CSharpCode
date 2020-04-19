@@ -12,7 +12,7 @@ namespace PLS.DanseTrad
 		private Color Couleur { get; set; }
 		public Point CurrentPosition { get; set; }
 		public Point Origin { get; set; }
-		private int Angle { get; set; }
+		public int Angle { get; set; }
 		private Tuple<double, double>[] Circle { get; set; }
 
 		public Danseur(Color couleur, Point position, int angle, Tuple<double, double>[] circle)
@@ -47,7 +47,7 @@ namespace PLS.DanseTrad
 				new Point(CurrentPosition.X + TranslateX(3, index0), CurrentPosition.Y + TranslateY(3, index0)),
 				new Point(CurrentPosition.X + TranslateX(1, index90), CurrentPosition.Y +TranslateY(1, index90)),
 				new Point(CurrentPosition.X + TranslateX(3, index180), CurrentPosition.Y + TranslateY(3, index180)),
-				new Point(CurrentPosition.X + TranslateX(1, index270), CurrentPosition.Y + TranslateY(1, index270))
+				new Point(CurrentPosition.X + TranslateX(0, index270), CurrentPosition.Y + TranslateY(0, index270))
 			};
 			g.FillClosedCurve(new SolidBrush(Couleur), points);
 
