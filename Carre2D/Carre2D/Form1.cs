@@ -43,11 +43,11 @@ namespace WindowsFormsApplication3
 			Danseurs[0] = new Danseur(Color.Blue, new Point(shortSpace, toEdgeLong), 36, Circle);
 			Danseurs[1] = new Danseur(Color.Pink, new Point(longSpace, toEdgeLong), 36, Circle);
 
-			Danseurs[2] = new Danseur(Color.Pink, new Point(toEdgeLong, shortSpace), 54, Circle);
-			Danseurs[3] = new Danseur(Color.Blue, new Point(toEdgeLong, longSpace), 54, Circle);
+			Danseurs[2] = new Danseur(Color.Blue, new Point(toEdgeLong, longSpace), 54, Circle);
+			Danseurs[3] = new Danseur(Color.Pink, new Point(toEdgeLong, shortSpace), 54, Circle);
 
-			Danseurs[4] = new Danseur(Color.Pink, new Point(shortSpace, toEdge), 0, Circle);
-			Danseurs[5] = new Danseur(Color.Blue, new Point(longSpace, toEdge), 0, Circle);
+			Danseurs[4] = new Danseur(Color.Blue, new Point(longSpace, toEdge), 0, Circle);
+			Danseurs[5] = new Danseur(Color.Pink, new Point(shortSpace, toEdge), 0, Circle);
 
 			Danseurs[6] = new Danseur(Color.Blue, new Point(toEdge, shortSpace), 18, Circle);
 			Danseurs[7] = new Danseur(Color.Pink, new Point(toEdge, longSpace), 18, Circle);
