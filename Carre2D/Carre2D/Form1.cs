@@ -28,26 +28,37 @@ namespace WindowsFormsApplication3
 				double angRad = (Math.PI / 180.0) * angle;
 				Circle[index++] = new Tuple<double, double>(Math.Cos(angRad), Math.Sin(angRad));
 			}
+			const int toEdge = 100;
+			const int spacing = 10;
+			const int danserWidth = 50;
+			int size = set1.Size.Width;
+			int toEdgeLong = size - toEdge;
+			int center = size / 2;
+			//
+			int danserDistToCenter = (danserWidth + spacing) / 2;
+			int shortSpace = center - danserDistToCenter;
+			int longSpace = center + danserDistToCenter;
+			//
 			Danseurs = new Danseur[8];
-			Danseurs[0] = new Danseur(Color.Blue, new Point(121, 280), 36, Circle);
-			Danseurs[1] = new Danseur(Color.Pink, new Point(185, 280), 36, Circle);
-			Danseurs[2] = new Danseur(Color.Blue, new Point(22, 110), 54, Circle);
-			Danseurs[3] = new Danseur(Color.Pink, new Point(22, 180), 54, Circle);
-			Danseurs[4] = new Danseur(Color.Blue, new Point(121, 25), 0, Circle);
-			Danseurs[5] = new Danseur(Color.Pink, new Point(185, 25), 0, Circle);
-			Danseurs[6] = new Danseur(Color.Blue, new Point(290, 110), 18, Circle);
-			Danseurs[7] = new Danseur(Color.Pink, new Point(290, 180), 18, Circle);
+			Danseurs[0] = new Danseur(Color.Blue, new Point(shortSpace, toEdgeLong), 36, Circle);
+			Danseurs[1] = new Danseur(Color.Pink, new Point(longSpace, toEdgeLong), 36, Circle);
+
+			Danseurs[2] = new Danseur(Color.Pink, new Point(toEdgeLong, shortSpace), 54, Circle);
+			Danseurs[3] = new Danseur(Color.Blue, new Point(toEdgeLong, longSpace), 54, Circle);
+
+			Danseurs[4] = new Danseur(Color.Pink, new Point(shortSpace, toEdge), 0, Circle);
+			Danseurs[5] = new Danseur(Color.Blue, new Point(longSpace, toEdge), 0, Circle);
+
+			Danseurs[6] = new Danseur(Color.Blue, new Point(toEdge, shortSpace), 18, Circle);
+			Danseurs[7] = new Danseur(Color.Pink, new Point(toEdge, longSpace), 18, Circle);
 
 			Update(null);
-			//TimerCallback tcb = Update;
-			//System.Threading.Timer testTimer = new System.Threading.Timer(tcb, null, 0, 50);
+			TimerCallback tcb = Update;
+			System.Threading.Timer testTimer = new System.Threading.Timer(tcb, null, 0, 50);
 		}
-
 		private void Form1_Load(object sender, EventArgs e)
 		{
 		}
-
-		private static int index = 0;
 		private void Update(Object source)
 		{
 			//int index = (int)source;
@@ -55,35 +66,86 @@ namespace WindowsFormsApplication3
 			using (Graphics g = Graphics.FromImage(bmp))
 			{
 				g.Clear(Color.White);
-				index %= 72;
-				double xScale = Circle[index].Item1;
-				double yScale = Circle[index++].Item2;
-				//xScale = 1.0;
-				//yScale = 1.0;
-
-
-				//Danseur d = Danseurs[0];
-				//d.CurrentPosition = new Point(150 + (int) Math.Round(100 * xScale), 150 + (int) Math.Round(100 * yScale));
-				//d.Draw(g, new Point(0, 0), index * 3);
-				//d = Danseurs[1];
-				//d.CurrentPosition = new Point(100 + (int)Math.Round(75 * xScale), 100 + (int)Math.Round(75 * yScale));
-				foreach (Danseur d1 in Danseurs)
+				foreach (Danseur danseur in Danseurs)
 				{
-					d1.Draw(g, new Point(0, 0), d1.Angle);
+					danseur.StepToNext(g);
 				}
 			}
 			set1.Image = bmp;
-
+		}
+		private void InitializeMoves()
+		{
+			for (int i = 0; i <= 72; i++)
+			{
+				Danseurs[0].Moves.Add(null);
+				Danseurs[5].Moves.Add(null);
+				Danseurs[1].Moves.Add(new Move((i + 36) % 72));
+				Danseurs[4].Moves.Add(new Move(new Point(0, 0), i));
+			}
+			for (int i = 0; i < 150; i += 3)
+			{
+				Danseurs[0].Moves.Add(new PLS.DanseTrad.Move(new Point(0, -3)));
+				Danseurs[1].Moves.Add(new PLS.DanseTrad.Move(new Point(0, -3)));
+				Danseurs[4].Moves.Add(null);
+				Danseurs[5].Moves.Add(null);
+			}
+			for (int i = 0; i < 75; i += 3)
+			{
+				Danseurs[0].Moves.Add(new PLS.DanseTrad.Move(new Point(0, 3)));
+				Danseurs[1].Moves.Add(new PLS.DanseTrad.Move(new Point(0, 3)));
+				Danseurs[4].Moves.Add(null);
+				Danseurs[5].Moves.Add(null);
+			}
+			for (int i = 0; i < 165; i += 3)
+			{
+				if (i > 50 && i <= 100)
+				{
+					Danseurs[4].Moves.Add(new PLS.DanseTrad.Move(new Point(-3, 0)));
+					Danseurs[5].Moves.Add(new PLS.DanseTrad.Move(new Point(3, 0)));
+				}
+				else
+				{
+					Danseurs[4].Moves.Add(null);
+					Danseurs[5].Moves.Add(null);
+				}
+				Danseurs[0].Moves.Add(new PLS.DanseTrad.Move(new Point(0, -3)));
+				Danseurs[1].Moves.Add(new PLS.DanseTrad.Move(new Point(0, -3)));
+			}
+			for (int i = 0; i < 50; i += 3)
+			{
+				Danseurs[4].Moves.Add(new PLS.DanseTrad.Move(new Point(3, 0)));
+				Danseurs[5].Moves.Add(new PLS.DanseTrad.Move(new Point(-3, 0)));
+			}
+			int ang0 = Danseurs[0].Angle;
+			int ang1 = Danseurs[1].Angle;
+			for (int i = 0; i <= 18; i++)
+			{
+				Danseurs[4].Moves.Add(null);
+				Danseurs[5].Moves.Add(null);
+				Danseurs[0].Moves.Add(new Move((ang0 + i) % 72));
+				Danseurs[1].Moves.Add(new Move((ang1 - i) % 72));
+			}
+			for (int i = 0; i <= 5; i++)
+			{
+				Danseurs[4].Moves.Add(null);
+				Danseurs[5].Moves.Add(null);
+				Danseurs[0].Moves.Add(null);
+				Danseurs[1].Moves.Add(null);
+			}
+			ang0 = Danseurs[0].Angle;
+			ang1 = Danseurs[1].Angle;
+			for (int i = 0; i <= 18; i++)
+			{
+				Danseurs[4].Moves.Add(null);
+				Danseurs[5].Moves.Add(null);
+				Danseurs[0].Moves.Add(new Move((ang0 - i) % 72));
+				Danseurs[1].Moves.Add(new Move((ang1 + i) % 72));
+			}
 		}
 		private void button1_Click(object sender, EventArgs e)
 		{
-			for (int i = 0; i <= 3600; i++)
-			{
-				Update(null);
-				Thread.Sleep(50);
-			}
+			InitializeMoves();
 		}
-
 		private void set1_MouseClick(object sender, MouseEventArgs e)
 		{
 			Danseur d = Danseurs[((int)numericUpDownNumeroCouple.Value - 1) * 2];
@@ -91,5 +153,6 @@ namespace WindowsFormsApplication3
 			Debug.WriteLine($"Mouse X: {e.X} Y: {e.Y}");
 			Update(numericUpDownAngle.Value);
 		}
+	
 	}
 }

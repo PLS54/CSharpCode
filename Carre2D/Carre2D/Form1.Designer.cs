@@ -41,7 +41,7 @@
             // 
             this.set1.Location = new System.Drawing.Point(-1, -2);
             this.set1.Name = "set1";
-            this.set1.Size = new System.Drawing.Size(332, 325);
+            this.set1.Size = new System.Drawing.Size(400, 400);
             this.set1.TabIndex = 0;
             this.set1.TabStop = false;
             this.set1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.set1_MouseClick);
