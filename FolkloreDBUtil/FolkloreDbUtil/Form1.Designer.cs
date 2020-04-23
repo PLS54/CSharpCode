@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBoxAdresseLigne2Ville = new System.Windows.Forms.TextBox();
@@ -174,7 +174,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(79, 16);
             this.label11.TabIndex = 13;
-            this.label11.Text = "Choix courriel";
+            this.label11.Text = "Choi&x courriel";
             // 
             // labelNoEnfants
             // 
@@ -184,7 +184,7 @@
             this.labelNoEnfants.Name = "labelNoEnfants";
             this.labelNoEnfants.Size = new System.Drawing.Size(69, 16);
             this.labelNoEnfants.TabIndex = 27;
-            this.labelNoEnfants.Text = "No. Enfants";
+            this.labelNoEnfants.Text = "No. En&fants";
             // 
             // labelNomConjoint
             // 
@@ -194,7 +194,7 @@
             this.labelNomConjoint.Name = "labelNomConjoint";
             this.labelNomConjoint.Size = new System.Drawing.Size(80, 16);
             this.labelNomConjoint.TabIndex = 25;
-            this.labelNomConjoint.Text = "Nom conjoint";
+            this.labelNomConjoint.Text = "Nom con&joint";
             // 
             // textBoxNomConjoint
             // 
@@ -212,17 +212,17 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(33, 16);
             this.label7.TabIndex = 23;
-            this.label7.Text = "Type";
+            this.label7.Text = "T&ype";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(33, 123);
+            this.label5.Location = new System.Drawing.Point(33, 120);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 16);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Adresse Ligne 1";
+            this.label5.Text = "Adresse Ligne &1";
             // 
             // label4
             // 
@@ -232,7 +232,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 16);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Status";
+            this.label4.Text = "S&tatus";
             // 
             // label3
             // 
@@ -242,7 +242,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 16);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Courriel";
+            this.label3.Text = "&Courriel";
             // 
             // label2
             // 
@@ -252,7 +252,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 16);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Prénom";
+            this.label2.Text = "&Prénom";
             // 
             // label1
             // 
@@ -262,7 +262,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 16);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Nom de Famille";
+            this.label1.Text = "Nom de &Famille";
             // 
             // textBoxAdresse
             // 
@@ -300,8 +300,8 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightBlue;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightBlue;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 208);
@@ -339,7 +339,7 @@
             this.checkBoxSansNoMembre.Name = "checkBoxSansNoMembre";
             this.checkBoxSansNoMembre.Size = new System.Drawing.Size(108, 17);
             this.checkBoxSansNoMembre.TabIndex = 8;
-            this.checkBoxSansNoMembre.Text = "Sans no. membre";
+            this.checkBoxSansNoMembre.Text = "Sans &no. membre";
             this.checkBoxSansNoMembre.UseVisualStyleBackColor = true;
             this.checkBoxSansNoMembre.CheckedChanged += new System.EventHandler(this.controlSearhChanged);
             // 
@@ -352,7 +352,7 @@
             this.checkBoxAvecNoMembres.Name = "checkBoxAvecNoMembres";
             this.checkBoxAvecNoMembres.Size = new System.Drawing.Size(109, 17);
             this.checkBoxAvecNoMembres.TabIndex = 7;
-            this.checkBoxAvecNoMembres.Text = "Avec no. membre";
+            this.checkBoxAvecNoMembres.Text = "Ave&c no. membre";
             this.checkBoxAvecNoMembres.UseVisualStyleBackColor = true;
             this.checkBoxAvecNoMembres.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
             // 
@@ -365,7 +365,7 @@
             this.checkBoxActives.Name = "checkBoxActives";
             this.checkBoxActives.Size = new System.Drawing.Size(61, 17);
             this.checkBoxActives.TabIndex = 5;
-            this.checkBoxActives.Text = "Actives";
+            this.checkBoxActives.Text = "Activ&es";
             this.checkBoxActives.UseVisualStyleBackColor = true;
             this.checkBoxActives.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
             // 
@@ -378,7 +378,7 @@
             this.checkBoxEchue.Name = "checkBoxEchue";
             this.checkBoxEchue.Size = new System.Drawing.Size(62, 17);
             this.checkBoxEchue.TabIndex = 6;
-            this.checkBoxEchue.Text = "Echues";
+            this.checkBoxEchue.Text = "Ech&ues";
             this.checkBoxEchue.UseVisualStyleBackColor = true;
             this.checkBoxEchue.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
             // 
@@ -390,7 +390,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(34, 16);
             this.label12.TabIndex = 3;
-            this.label12.Text = "Nom";
+            this.label12.Text = "No&m";
             // 
             // button4
             // 
@@ -471,7 +471,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 16);
             this.label6.TabIndex = 0;
-            this.label6.Text = "No. Membre";
+            this.label6.Text = "N&o. Membre";
             // 
             // textBoxNoMembre
             // 
@@ -491,7 +491,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(133, 16);
             this.label10.TabIndex = 2;
-            this.label10.Text = "Date de renouvellement";
+            this.label10.Text = "D&ate de renouvellement";
             // 
             // errorProvider
             // 
@@ -551,36 +551,36 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(294, 123);
+            this.label8.Location = new System.Drawing.Point(294, 120);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 16);
             this.label8.TabIndex = 17;
-            this.label8.Text = "Ville";
+            this.label8.Text = "&Ville";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(480, 123);
+            this.label9.Location = new System.Drawing.Point(480, 120);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 16);
             this.label9.TabIndex = 19;
-            this.label9.Text = "Prov.";
+            this.label9.Text = "P&rov.";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(562, 123);
+            this.label13.Location = new System.Drawing.Point(562, 120);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(70, 16);
             this.label13.TabIndex = 21;
-            this.label13.Text = "Code Postal";
+            this.label13.Text = "Code Posta&l";
             // 
             // comboBoxProvinces
             // 
             this.comboBoxProvinces.FormattingEnabled = true;
-            this.comboBoxProvinces.Location = new System.Drawing.Point(521, 118);
+            this.comboBoxProvinces.Location = new System.Drawing.Point(516, 118);
             this.comboBoxProvinces.Name = "comboBoxProvinces";
             this.comboBoxProvinces.Size = new System.Drawing.Size(41, 21);
             this.comboBoxProvinces.TabIndex = 20;
