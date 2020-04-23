@@ -15,6 +15,7 @@ using System.Data.Odbc;
 using System.Collections;
 using System.Reflection;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace SimpleCsharpCRUD
 {
@@ -154,7 +155,7 @@ namespace SimpleCsharpCRUD
 			if (sender as Control == textBoxAdresse)
 			{
 				textBoxAdresseLigne2Ville.ForeColor = Color.Red;
-				textBoxAdresseLigne2Prov.ForeColor = Color.Red;
+				comboBoxProvinces.ForeColor = Color.Red;
 				textBoxAdresseLigne2CodePostal.ForeColor = Color.Red;
 			}
 			ShowHideFamiliale();
@@ -164,7 +165,7 @@ namespace SimpleCsharpCRUD
 			(textBoxAdresse.Tag as DescriptionControl).ChampEdite = true;
 			textBoxAdresse.ForeColor = Color.Red;
 			textBoxAdresseLigne2Ville.ForeColor = Color.Red;
-			textBoxAdresseLigne2Prov.ForeColor = Color.Red;
+			comboBoxProvinces.ForeColor = Color.Red;
 			textBoxAdresseLigne2CodePostal.ForeColor = Color.Red;
 		}
 		//
@@ -202,6 +203,7 @@ namespace SimpleCsharpCRUD
 			InitComboWithDB(comboBoxStatusMembre, "StatusMembre", "CodeDeStatus", "Description");
 			InitComboWithDB(comboBoxChoixCourriel, "ChoixCourriel", "CodeDeChoix", "Description");
 			InitComboWithDB(comboBoxTypeDeMembership, "TypeDeMembre", "TypeDeMembre", "Description");
+			InitComboWithDB(comboBoxProvinces, "Provinces", "CodeProv", "DescProv");
 		}
 		private void InitComboWithDB(ComboBox combo, string tableName, string code, string description)
 		{
@@ -325,7 +327,7 @@ namespace SimpleCsharpCRUD
 		private void ClearText()
 		{
 			textBoxAdresseLigne2CodePostal.Text = string.Empty;
-			textBoxAdresseLigne2Prov.Text = string.Empty;
+			comboBoxProvinces.SelectedIndex = 0;
 			textBoxAdresseLigne2Ville.Text = string.Empty;
 			foreach(Control control in EditControls)
 			{
@@ -344,9 +346,10 @@ namespace SimpleCsharpCRUD
 		private void ClearFieldNeedsUpdate()
 		{
 			textBoxAdresseLigne2Ville.ForeColor = Color.Black;
-			textBoxAdresseLigne2Prov.ForeColor = Color.Black;
+			comboBoxProvinces.ForeColor = Color.Black;
 			textBoxAdresseLigne2CodePostal.ForeColor = Color.Black;
-
+			errorProvider.Clear();
+			buttonSave.Enabled = true;
 			foreach (Control c in EditControls)
 			{
 				DescriptionControl dc = c.Tag as DescriptionControl;
@@ -397,6 +400,14 @@ namespace SimpleCsharpCRUD
 				return false;
 			}
 		}
+		private static bool IsCodePostalValide(string codePostal)
+		{
+			if(codePostal[3] != ' ')
+			{
+				return false;
+			}
+			return Regex.IsMatch(codePostal, "\\A[ABCEGHJKLMNPRSTVXY]\\d[A-Z] ?\\d[A-Z]\\d\\z"); 
+		}
 		private void SetControlDBValue(Control control, string value)
 		{
 			ComboBox combo = control as ComboBox;
@@ -419,7 +430,7 @@ namespace SimpleCsharpCRUD
 					{
 						textBoxAdresseLigne2Ville.Text = lines[1].Substring(1, lines[1].Length - 12);
 						string villeEtZip = lines[1].Substring(lines[1].Length - 10);
-						textBoxAdresseLigne2Prov.Text = villeEtZip.Substring(0, villeEtZip.Length - 8);
+						comboBoxProvinces.Text = villeEtZip.Substring(0, villeEtZip.Length - 8);
 						textBoxAdresseLigne2CodePostal.Text = villeEtZip.Substring(villeEtZip.Length - 7);
 					}
 				}
@@ -444,7 +455,7 @@ namespace SimpleCsharpCRUD
 			string textToUpdate = control.Text.Replace("'", "''");
 			if (control == textBoxAdresse)
 			{
-				textToUpdate = $"{textBoxAdresse.Text.Replace("'", "''")}, {textBoxAdresseLigne2Ville.Text.Replace("'", "''")} {textBoxAdresseLigne2Prov.Text.Replace("'", "''")} {textBoxAdresseLigne2CodePostal.Text.Replace("'", "''")}";
+				textToUpdate = $"{textBoxAdresse.Text.Replace("'", "''")}, {textBoxAdresseLigne2Ville.Text.Replace("'", "''")} {comboBoxProvinces.Text.Replace("'", "''")} {textBoxAdresseLigne2CodePostal.Text.Replace("'", "''")}";
 			}
 			return textToUpdate;
 		}
@@ -467,14 +478,27 @@ namespace SimpleCsharpCRUD
 			}
 
 		}
+		private void textBoxAdresseLigne2CodePostal_Validating(object sender, CancelEventArgs e)
+		{
+			e.Cancel = !IsCodePostalValide((sender as Control).Text);
+			if (e.Cancel)
+			{
+				buttonSave.Enabled = false;
+				errorProvider.SetError(sender as Control, "Code postal non valide");
+			}
+			else
+			{
+				buttonSave.Enabled = true;
+				errorProvider.Clear();
+			}
+		}
 		private void buttonAjout1An_Click(object sender, EventArgs e)
 		{
 			buttonAjout1An.Enabled = false;
 			dateTimeRenouvellemt.Value += new TimeSpan(DaysInNextYear(dateTimeRenouvellemt.Value), 0, 0, 0);
 			comboBoxStatusMembre.SelectedValue = "R";
 		}
-
-		private int DaysInNextYear(DateTime from)
+		private static int DaysInNextYear(DateTime from)
 		{
 			int daysToAdd = 365;
 			if (from.Month >= 3 && DateTime.IsLeapYear(from.Year + 1))
@@ -488,7 +512,6 @@ namespace SimpleCsharpCRUD
 
 			return daysToAdd;
 		}
-
 		private void textBoxNoMembre_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -496,7 +519,6 @@ namespace SimpleCsharpCRUD
 				e.Handled = true;
 			}
 		}
-
 	}
 	internal class DescriptionControl
 	{
