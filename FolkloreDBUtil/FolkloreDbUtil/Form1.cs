@@ -117,7 +117,6 @@ namespace SimpleCsharpCRUD
 						{
 							updates.Add($"{dc.AliasDuChamp}={GetControlDBValue(control)}, ");
 						}
-
 					}
 				}
 				if(updates.Count < 1)
@@ -152,7 +151,21 @@ namespace SimpleCsharpCRUD
 		{
 			((sender as Control).Tag as DescriptionControl).ChampEdite = true;
 			(sender as Control).ForeColor = Color.Red;
+			if (sender as Control == textBoxAdresse)
+			{
+				textBoxAdresseLigne2Ville.ForeColor = Color.Red;
+				textBoxAdresseLigne2Prov.ForeColor = Color.Red;
+				textBoxAdresseLigne2CodePostal.ForeColor = Color.Red;
+			}
 			ShowHideFamiliale();
+		}
+		private void ChampAdresseChange(object sender, EventArgs e)
+		{
+			(textBoxAdresse.Tag as DescriptionControl).ChampEdite = true;
+			textBoxAdresse.ForeColor = Color.Red;
+			textBoxAdresseLigne2Ville.ForeColor = Color.Red;
+			textBoxAdresseLigne2Prov.ForeColor = Color.Red;
+			textBoxAdresseLigne2CodePostal.ForeColor = Color.Red;
 		}
 		//
 		private void InitializeEditControlList()
@@ -311,6 +324,9 @@ namespace SimpleCsharpCRUD
 		}
 		private void ClearText()
 		{
+			textBoxAdresseLigne2CodePostal.Text = string.Empty;
+			textBoxAdresseLigne2Prov.Text = string.Empty;
+			textBoxAdresseLigne2Ville.Text = string.Empty;
 			foreach(Control control in EditControls)
 			{
 				if (control is ComboBox)
@@ -327,6 +343,10 @@ namespace SimpleCsharpCRUD
 		}
 		private void ClearFieldNeedsUpdate()
 		{
+			textBoxAdresseLigne2Ville.ForeColor = Color.Black;
+			textBoxAdresseLigne2Prov.ForeColor = Color.Black;
+			textBoxAdresseLigne2CodePostal.ForeColor = Color.Black;
+
 			foreach (Control c in EditControls)
 			{
 				DescriptionControl dc = c.Tag as DescriptionControl;
@@ -377,7 +397,7 @@ namespace SimpleCsharpCRUD
 				return false;
 			}
 		}
-		private static void SetControlDBValue(Control control, string value)
+		private void SetControlDBValue(Control control, string value)
 		{
 			ComboBox combo = control as ComboBox;
 			DateTimePicker dtp = control as DateTimePicker;
@@ -391,10 +411,25 @@ namespace SimpleCsharpCRUD
 			}
 			else
 			{
-				control.Text = value.TrimEnd(' ');
+				if (control == textBoxAdresse)
+				{
+					string[] lines = value.TrimEnd(' ').Split(',');
+					control.Text = lines[0];
+					if (lines.Length > 1)
+					{
+						textBoxAdresseLigne2Ville.Text = lines[1].Substring(1, lines[1].Length - 12);
+						string villeEtZip = lines[1].Substring(lines[1].Length - 10);
+						textBoxAdresseLigne2Prov.Text = villeEtZip.Substring(0, villeEtZip.Length - 8);
+						textBoxAdresseLigne2CodePostal.Text = villeEtZip.Substring(villeEtZip.Length - 7);
+					}
+				}
+				else
+				{
+					control.Text = value.TrimEnd(' ');
+				}
 			}
 		}
-		private static string GetControlDBValue(Control control)
+		private string GetControlDBValue(Control control)
 		{
 			ComboBox combo = control as ComboBox;
 			DateTimePicker dtp = control as DateTimePicker;
@@ -406,7 +441,12 @@ namespace SimpleCsharpCRUD
 			{
 				return dtp.Value.ToShortDateString();
 			}
-			return control.Text;
+			string textToUpdate = control.Text.Replace("'", "''");
+			if (control == textBoxAdresse)
+			{
+				textToUpdate = $"{textBoxAdresse.Text.Replace("'", "''")}, {textBoxAdresseLigne2Ville.Text.Replace("'", "''")} {textBoxAdresseLigne2Prov.Text.Replace("'", "''")} {textBoxAdresseLigne2CodePostal.Text.Replace("'", "''")}";
+			}
+			return textToUpdate;
 		}
 		private void controlSearhChanged(object sender, EventArgs e)
 		{
@@ -456,6 +496,7 @@ namespace SimpleCsharpCRUD
 				e.Handled = true;
 			}
 		}
+
 	}
 	internal class DescriptionControl
 	{
