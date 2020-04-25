@@ -24,12 +24,22 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxProvinces = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxAdresseLigne2CodePostal = new System.Windows.Forms.TextBox();
+            this.buttonAjout1An = new System.Windows.Forms.Button();
+            this.dateTimeRenouvellemt = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
             this.textBoxAdresseLigne2Ville = new System.Windows.Forms.TextBox();
             this.numericUpDownNoEnfants = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
             this.comboBoxChoixCourriel = new System.Windows.Forms.ComboBox();
+            this.textBoxNoMembre = new System.Windows.Forms.TextBox();
             this.comboBoxStatusMembre = new System.Windows.Forms.ComboBox();
             this.comboBoxTypeDeMembership = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -53,25 +63,15 @@
             this.checkBoxActives = new System.Windows.Forms.CheckBox();
             this.checkBoxEchue = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.textBoxID = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.textBoxWhereClause = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxNoMembre = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textBoxID = new System.Windows.Forms.TextBox();
-            this.dateTimeRenouvellemt = new System.Windows.Forms.DateTimePicker();
-            this.buttonAjout1An = new System.Windows.Forms.Button();
             this.labelVersion = new System.Windows.Forms.Label();
-            this.textBoxAdresseLigne2CodePostal = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.comboBoxProvinces = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNoEnfants)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -118,6 +118,86 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Membre";
             // 
+            // comboBoxProvinces
+            // 
+            this.comboBoxProvinces.FormattingEnabled = true;
+            this.comboBoxProvinces.Location = new System.Drawing.Point(516, 118);
+            this.comboBoxProvinces.Name = "comboBoxProvinces";
+            this.comboBoxProvinces.Size = new System.Drawing.Size(41, 21);
+            this.comboBoxProvinces.TabIndex = 20;
+            this.comboBoxProvinces.SelectedIndexChanged += new System.EventHandler(this.ChampAdresseChange);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(562, 120);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 16);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Code Posta&l";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(480, 120);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 16);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "P&rov.";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(294, 120);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 16);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "&Ville";
+            // 
+            // textBoxAdresseLigne2CodePostal
+            // 
+            this.textBoxAdresseLigne2CodePostal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxAdresseLigne2CodePostal.Location = new System.Drawing.Point(638, 119);
+            this.textBoxAdresseLigne2CodePostal.MaxLength = 7;
+            this.textBoxAdresseLigne2CodePostal.Name = "textBoxAdresseLigne2CodePostal";
+            this.textBoxAdresseLigne2CodePostal.Size = new System.Drawing.Size(49, 20);
+            this.textBoxAdresseLigne2CodePostal.TabIndex = 22;
+            this.textBoxAdresseLigne2CodePostal.WordWrap = false;
+            this.textBoxAdresseLigne2CodePostal.TextChanged += new System.EventHandler(this.ChampAdresseChange);
+            this.textBoxAdresseLigne2CodePostal.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxAdresseLigne2CodePostal_Validating);
+            // 
+            // buttonAjout1An
+            // 
+            this.buttonAjout1An.Location = new System.Drawing.Point(543, 25);
+            this.buttonAjout1An.Name = "buttonAjout1An";
+            this.buttonAjout1An.Size = new System.Drawing.Size(32, 19);
+            this.buttonAjout1An.TabIndex = 4;
+            this.buttonAjout1An.Text = "+1";
+            this.buttonAjout1An.UseVisualStyleBackColor = true;
+            this.buttonAjout1An.Click += new System.EventHandler(this.buttonAjout1An_Click);
+            // 
+            // dateTimeRenouvellemt
+            // 
+            this.dateTimeRenouvellemt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeRenouvellemt.Location = new System.Drawing.Point(423, 25);
+            this.dateTimeRenouvellemt.Name = "dateTimeRenouvellemt";
+            this.dateTimeRenouvellemt.Size = new System.Drawing.Size(108, 20);
+            this.dateTimeRenouvellemt.TabIndex = 3;
+            this.dateTimeRenouvellemt.ValueChanged += new System.EventHandler(this.ValeurChampModifier);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(275, 29);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(133, 16);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "D&ate de renouvellement";
+            // 
             // textBoxAdresseLigne2Ville
             // 
             this.textBoxAdresseLigne2Ville.Location = new System.Drawing.Point(330, 119);
@@ -139,6 +219,16 @@
             this.numericUpDownNoEnfants.TabIndex = 28;
             this.numericUpDownNoEnfants.ValueChanged += new System.EventHandler(this.ValeurChampModifier);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(120, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 16);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "N&o. Membre";
+            // 
             // comboBoxChoixCourriel
             // 
             this.comboBoxChoixCourriel.FormattingEnabled = true;
@@ -147,6 +237,16 @@
             this.comboBoxChoixCourriel.Size = new System.Drawing.Size(166, 21);
             this.comboBoxChoixCourriel.TabIndex = 14;
             this.comboBoxChoixCourriel.SelectedIndexChanged += new System.EventHandler(this.ValeurChampModifier);
+            // 
+            // textBoxNoMembre
+            // 
+            this.textBoxNoMembre.Location = new System.Drawing.Point(208, 28);
+            this.textBoxNoMembre.MaxLength = 4;
+            this.textBoxNoMembre.Name = "textBoxNoMembre";
+            this.textBoxNoMembre.Size = new System.Drawing.Size(38, 20);
+            this.textBoxNoMembre.TabIndex = 1;
+            this.textBoxNoMembre.TextChanged += new System.EventHandler(this.ValeurChampModifier);
+            this.textBoxNoMembre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNoMembre_KeyPress);
             // 
             // comboBoxStatusMembre
             // 
@@ -300,8 +400,8 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightBlue;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightBlue;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 208);
@@ -392,6 +492,15 @@
             this.label12.TabIndex = 3;
             this.label12.Text = "No&m";
             // 
+            // textBoxID
+            // 
+            this.textBoxID.Location = new System.Drawing.Point(959, 24);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(36, 20);
+            this.textBoxID.TabIndex = 9;
+            this.textBoxID.Visible = false;
+            this.textBoxID.TextChanged += new System.EventHandler(this.ValeurChampModifier);
+            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Crimson;
@@ -463,67 +572,9 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(120, 29);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 16);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "N&o. Membre";
-            // 
-            // textBoxNoMembre
-            // 
-            this.textBoxNoMembre.Location = new System.Drawing.Point(208, 28);
-            this.textBoxNoMembre.MaxLength = 4;
-            this.textBoxNoMembre.Name = "textBoxNoMembre";
-            this.textBoxNoMembre.Size = new System.Drawing.Size(38, 20);
-            this.textBoxNoMembre.TabIndex = 1;
-            this.textBoxNoMembre.TextChanged += new System.EventHandler(this.ValeurChampModifier);
-            this.textBoxNoMembre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNoMembre_KeyPress);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(275, 29);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(133, 16);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "D&ate de renouvellement";
-            // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
-            // 
-            // textBoxID
-            // 
-            this.textBoxID.Location = new System.Drawing.Point(959, 24);
-            this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(36, 20);
-            this.textBoxID.TabIndex = 9;
-            this.textBoxID.Visible = false;
-            this.textBoxID.TextChanged += new System.EventHandler(this.ValeurChampModifier);
-            // 
-            // dateTimeRenouvellemt
-            // 
-            this.dateTimeRenouvellemt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeRenouvellemt.Location = new System.Drawing.Point(423, 25);
-            this.dateTimeRenouvellemt.Name = "dateTimeRenouvellemt";
-            this.dateTimeRenouvellemt.Size = new System.Drawing.Size(108, 20);
-            this.dateTimeRenouvellemt.TabIndex = 3;
-            this.dateTimeRenouvellemt.ValueChanged += new System.EventHandler(this.ValeurChampModifier);
-            // 
-            // buttonAjout1An
-            // 
-            this.buttonAjout1An.Location = new System.Drawing.Point(543, 25);
-            this.buttonAjout1An.Name = "buttonAjout1An";
-            this.buttonAjout1An.Size = new System.Drawing.Size(32, 19);
-            this.buttonAjout1An.TabIndex = 4;
-            this.buttonAjout1An.Text = "+1";
-            this.buttonAjout1An.UseVisualStyleBackColor = true;
-            this.buttonAjout1An.Click += new System.EventHandler(this.buttonAjout1An_Click);
             // 
             // labelVersion
             // 
@@ -534,57 +585,6 @@
             this.labelVersion.Size = new System.Drawing.Size(51, 20);
             this.labelVersion.TabIndex = 0;
             this.labelVersion.Text = "label8";
-            // 
-            // textBoxAdresseLigne2CodePostal
-            // 
-            this.textBoxAdresseLigne2CodePostal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxAdresseLigne2CodePostal.Location = new System.Drawing.Point(638, 119);
-            this.textBoxAdresseLigne2CodePostal.MaxLength = 7;
-            this.textBoxAdresseLigne2CodePostal.Name = "textBoxAdresseLigne2CodePostal";
-            this.textBoxAdresseLigne2CodePostal.Size = new System.Drawing.Size(49, 20);
-            this.textBoxAdresseLigne2CodePostal.TabIndex = 22;
-            this.textBoxAdresseLigne2CodePostal.WordWrap = false;
-            this.textBoxAdresseLigne2CodePostal.TextChanged += new System.EventHandler(this.ChampAdresseChange);
-            this.textBoxAdresseLigne2CodePostal.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxAdresseLigne2CodePostal_Validating);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(294, 120);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 16);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "&Ville";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(480, 120);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 16);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "P&rov.";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft MHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(562, 120);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 16);
-            this.label13.TabIndex = 21;
-            this.label13.Text = "Code Posta&l";
-            // 
-            // comboBoxProvinces
-            // 
-            this.comboBoxProvinces.FormattingEnabled = true;
-            this.comboBoxProvinces.Location = new System.Drawing.Point(516, 118);
-            this.comboBoxProvinces.Name = "comboBoxProvinces";
-            this.comboBoxProvinces.Size = new System.Drawing.Size(41, 21);
-            this.comboBoxProvinces.TabIndex = 20;
-            this.comboBoxProvinces.SelectedIndexChanged += new System.EventHandler(this.ChampAdresseChange);
             // 
             // Form1
             // 
@@ -600,6 +600,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Adhésions Folklore Outaouais";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
