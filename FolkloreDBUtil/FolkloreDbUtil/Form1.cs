@@ -27,12 +27,6 @@ namespace SimpleCsharpCRUD
             InitializeEditControlList();
             InitializeComboBoxes();
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            NewData = true;
-            LoadData();
-        }
-       //
         private void InitializeEditControlList()
         {
             EditControls = new List<Control>();
@@ -258,6 +252,11 @@ namespace SimpleCsharpCRUD
             return textToUpdate;
         }
         #region Events
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            NewData = true;
+            LoadData();
+        }
         private void dataGridViewSelectionOccured(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow rows = dataGridView1.Rows[e.RowIndex];
