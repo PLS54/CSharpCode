@@ -213,7 +213,7 @@ namespace SimpleCsharpCRUD
                 labelNoEnfants.Visible = false;
             }
         }
-        private void SetControlDBValue(Control control, string value)
+        private void SetControlDbValue(Control control, string value)
         {
             ComboBox combo = control as ComboBox;
             DateTimePicker dtp = control as DateTimePicker;
@@ -236,7 +236,7 @@ namespace SimpleCsharpCRUD
                 }
             }
         }
-        private string GetControlDBValue(Control control)
+        private string GetControlDbValue(Control control)
         {
             ComboBox combo = control as ComboBox;
             DateTimePicker dtp = control as DateTimePicker;
@@ -251,11 +251,51 @@ namespace SimpleCsharpCRUD
             }
             return textToUpdate;
         }
+        private string GenerateUpdateSql()
+        {
+            List<string> updates = new List<string>();
+            foreach (Control control in EditControls) {
+                DescriptionControl dc = control.Tag as DescriptionControl;
+                if (dc.ChampEdite) {
+                    if (dc.TypeOf == typeof(string)) {
+                        updates.Add($"{dc.AliasDuChamp}='{GetControlDbValue(control)}', ");
+                    } else if (dc.TypeOf == typeof(int)) {
+                        updates.Add($"{dc.AliasDuChamp}={GetControlDbValue(control)}, ");
+                    }
+                }
+            }
+            if (updates.Count < 1) {
+                return string.Empty;
+            }
+            return $"UPDATE Membership SET {Utils.ConcatanateListOfString(updates)} WHERE ID={ID}";
+        }
+        private string GenerateInsertSql()
+        {
+            List<string> fields, values;
+            fields = new List<string>();
+            values = new List<string>();
+            foreach (Control control in EditControls) {
+                DescriptionControl dc = control.Tag as DescriptionControl;
+                if (string.Compare(dc.AliasDuChamp, "ID", StringComparison.InvariantCultureIgnoreCase) != 0) {
+                    fields.Add($"{dc.AliasDuChamp}, ");
+                    if (dc.TypeOf == typeof(string)) {
+                        values.Add($"'{GetControlDbValue(control)}', ");
+                    } else if (dc.TypeOf == typeof(int)) {
+                        values.Add(string.IsNullOrWhiteSpace(control.Text) ? "NULL, " : $"{control.Text}, ");
+                    }
+                }
+            }
+            return $"INSERT INTO Membership ({Utils.ConcatanateListOfString(fields)}) VALUES ({Utils.ConcatanateListOfString(values)})";
+        }
         #region Events
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1Load(object sender, EventArgs e)
         {
             NewData = true;
             LoadData();
+        }
+        private void Form1FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Connection.Close();
         }
         private void dataGridViewSelectionOccured(object sender, DataGridViewCellEventArgs e)
         {
@@ -263,14 +303,14 @@ namespace SimpleCsharpCRUD
             ID = (int)rows.Cells["ID"].Value;
             foreach (Control control in EditControls) {
                 DescriptionControl dc = control.Tag as DescriptionControl;
-                SetControlDBValue(control, rows.Cells[dc.NomDuChamps].Value.ToString());
+                SetControlDbValue(control, rows.Cells[dc.NomDuChamps].Value.ToString());
             }
             NewData = false;
             ClearFieldNeedsUpdate();
             ShowHideFamiliale();
             buttonAjout1An.Enabled = true;
         }
-        private void buttonNew_Click(object sender, EventArgs e)
+        private void ButtonNewClick(object sender, EventArgs e)
         {
             // its method for add new data,
             // we will declaration NewData to true if we want to add new data
@@ -280,57 +320,30 @@ namespace SimpleCsharpCRUD
             comboBoxStatusMembre.SelectedValue = "R";
             comboBoxChoixCourriel.SelectedValue = "O";
             comboBoxTypeDeMembership.SelectedValue = "I";
-            dateTimeRenouvellemt.Value = DateTime.Now + new TimeSpan(DaysInNextYear(DateTime.Now), 0, 0, 0);
+            dateTimeRenouvellemt.Value = DateTime.Now + new TimeSpan(Utils.DaysInNextYear(DateTime.Now), 0, 0, 0);
         }
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSaveClick(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(errorProvider.GetError(textBoxCourriel))) {
                 return;
             }
-            DialogResult Message;
             string sqlCommand = "";
             if (NewData == true) {
-                Message = MessageBox.Show("Are you sure to add new data into database?", "Informations", MessageBoxButtons.YesNo);
-                if (Message == DialogResult.No) {
+                DialogResult message = MessageBox.Show("Are you sure to add new data into database?", "Informations", MessageBoxButtons.YesNo);
+                if (message == DialogResult.No) {
                     return;
                 }
-                List<string> fields = new List<string>();
-                List<string> values = new List<string>();
-                foreach (Control control in EditControls) {
-                    DescriptionControl dc = control.Tag as DescriptionControl;
-                    if (string.Compare(dc.AliasDuChamp, "ID", StringComparison.InvariantCultureIgnoreCase) != 0) {
-                        fields.Add($"{dc.AliasDuChamp}, ");
-                        if (dc.TypeOf == typeof(string)) {
-                            values.Add($"'{GetControlDBValue(control)}', ");
-                        } else if (dc.TypeOf == typeof(int)) {
-                            string text = string.IsNullOrWhiteSpace(control.Text) ? "NULL, " : $"{control.Text}, ";
-                            values.Add(string.IsNullOrWhiteSpace(control.Text) ? "NULL, " : $"{control.Text}, ");
-                        }
-                    }
-                }
-                sqlCommand = $"INSERT INTO Membership ({ConcatanateListOfString(fields)}) VALUES ({ConcatanateListOfString(values)})";
+                sqlCommand = GenerateInsertSql();
             } else {
                 // UPDATE DATA
-                List<string> updates = new List<string>();
-                foreach (Control control in EditControls) {
-                    DescriptionControl dc = control.Tag as DescriptionControl;
-                    if (dc.ChampEdite) {
-                        if (dc.TypeOf == typeof(string)) {
-                            updates.Add($"{dc.AliasDuChamp}='{GetControlDBValue(control)}', ");
-                        } else if (dc.TypeOf == typeof(int)) {
-                            updates.Add($"{dc.AliasDuChamp}={GetControlDBValue(control)}, ");
-                        }
-                    }
-                }
-                if (updates.Count < 1) {
-                    return;
-                }
-                sqlCommand = $"UPDATE Membership SET {ConcatanateListOfString(updates)} WHERE ID={ID}";
+                sqlCommand = GenerateUpdateSql();
             }
-            UpdateData(sqlCommand);
+            if (!string.IsNullOrWhiteSpace(sqlCommand)) {
+                UpdateData(sqlCommand);
+            }
             LoadData();
         }
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private void ButtonDeleteClick(object sender, EventArgs e)
         {
 
             DialogResult Message;
@@ -347,7 +360,13 @@ namespace SimpleCsharpCRUD
                 LoadData();
             }
         }
-        private void buttonExit_Click(object sender, EventArgs e)
+        private void ButtonAjout1AnClick(object sender, EventArgs e)
+        {
+            buttonAjout1An.Enabled = false;
+            dateTimeRenouvellemt.Value += new TimeSpan(Utils.DaysInNextYear(dateTimeRenouvellemt.Value), 0, 0, 0);
+            comboBoxStatusMembre.SelectedValue = "R";
+        }
+        private void ButtonExitClic(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -370,13 +389,19 @@ namespace SimpleCsharpCRUD
             comboBoxProvinces.ForeColor = Color.Red;
             textBoxAdresseLigne2CodePostal.ForeColor = Color.Red;
         }
-        private void controlSearhChanged(object sender, EventArgs e)
+        private void ControlSearhChanged(object sender, EventArgs e)
         {
             LoadData();
         }
-        private void textBoxCourriel_Validating(object sender, CancelEventArgs e)
+        private void TextBoxNoMembreKeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Cancel = !IsValidEmail((sender as Control).Text);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) {
+                e.Handled = true;
+            }
+        }
+        private void TextBoxCourrielValidating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = !Utils.IsValidEmail((sender as Control).Text);
             if (e.Cancel) {
                 buttonSave.Enabled = false;
                 errorProvider.SetError(sender as Control, "Couuriel non valide");
@@ -386,9 +411,9 @@ namespace SimpleCsharpCRUD
             }
 
         }
-        private void textBoxAdresseLigne2CodePostal_Validating(object sender, CancelEventArgs e)
+        private void TextBoxAdresseLigne2CodePostalValidating(object sender, CancelEventArgs e)
         {
-            e.Cancel = !IsCodePostalValide((sender as Control).Text);
+            e.Cancel = !Utils.IsCodePostalValide((sender as Control).Text);
             if (e.Cancel) {
                 buttonSave.Enabled = false;
                 errorProvider.SetError(sender as Control, "Code postal non valide");
@@ -396,59 +421,6 @@ namespace SimpleCsharpCRUD
                 buttonSave.Enabled = true;
                 errorProvider.Clear();
             }
-        }
-        private void buttonAjout1An_Click(object sender, EventArgs e)
-        {
-            buttonAjout1An.Enabled = false;
-            dateTimeRenouvellemt.Value += new TimeSpan(DaysInNextYear(dateTimeRenouvellemt.Value), 0, 0, 0);
-            comboBoxStatusMembre.SelectedValue = "R";
-        }
-        private void textBoxNoMembre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) {
-                e.Handled = true;
-            }
-        }
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Connection.Close();
-        }
-        #endregion
-        #region Statics
-        private static int DaysInNextYear(DateTime from)
-        {
-            int daysToAdd = 365;
-            if (from.Month >= 3 && DateTime.IsLeapYear(from.Year + 1)) {
-                daysToAdd = 366;
-            }
-            if (from.Month < 3 && DateTime.IsLeapYear(from.Year)) {
-                daysToAdd = 366;
-            }
-            return daysToAdd;
-        }
-        private static string ConcatanateListOfString(List<string> list)
-        {
-            string retString = string.Empty;
-            foreach (string s in list) {
-                retString += s;
-            }
-            return retString.Substring(0, retString.Length - 2);
-        }
-        private static bool IsValidEmail(string email)
-        {
-            try {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            } catch {
-                return false;
-            }
-        }
-        private static bool IsCodePostalValide(string codePostal)
-        {
-            if (codePostal[3] != ' ') {
-                return false;
-            }
-            return Regex.IsMatch(codePostal, "\\A[ABCEGHJKLMNPRSTVXY]\\d[A-Z] ?\\d[A-Z]\\d\\z");
         }
         #endregion
     }
@@ -502,6 +474,44 @@ namespace SimpleCsharpCRUD
         public override string ToString()
         {
             return Description;
+        }
+    }
+    internal static class Utils
+    {
+        internal static int DaysInNextYear(DateTime from)
+        {
+            int daysToAdd = 365;
+            if (from.Month >= 3 && DateTime.IsLeapYear(from.Year + 1)) {
+                daysToAdd = 366;
+            }
+            if (from.Month < 3 && DateTime.IsLeapYear(from.Year)) {
+                daysToAdd = 366;
+            }
+            return daysToAdd;
+        }
+        internal static string ConcatanateListOfString(List<string> list)
+        {
+            string retString = string.Empty;
+            foreach (string s in list) {
+                retString += s;
+            }
+            return retString.Substring(0, retString.Length - 2);
+        }
+        internal static bool IsValidEmail(string email)
+        {
+            try {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            } catch {
+                return false;
+            }
+        }
+        internal static bool IsCodePostalValide(string codePostal)
+        {
+            if (codePostal[3] != ' ') {
+                return false;
+            }
+            return Regex.IsMatch(codePostal, "\\A[ABCEGHJKLMNPRSTVXY]\\d[A-Z] ?\\d[A-Z]\\d\\z");
         }
     }
 }

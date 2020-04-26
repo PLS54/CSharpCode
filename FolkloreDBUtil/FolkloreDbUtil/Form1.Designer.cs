@@ -167,7 +167,7 @@
             this.textBoxAdresseLigne2CodePostal.TabIndex = 22;
             this.textBoxAdresseLigne2CodePostal.WordWrap = false;
             this.textBoxAdresseLigne2CodePostal.TextChanged += new System.EventHandler(this.ChampAdresseChange);
-            this.textBoxAdresseLigne2CodePostal.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxAdresseLigne2CodePostal_Validating);
+            this.textBoxAdresseLigne2CodePostal.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxAdresseLigne2CodePostalValidating);
             // 
             // buttonAjout1An
             // 
@@ -177,7 +177,7 @@
             this.buttonAjout1An.TabIndex = 4;
             this.buttonAjout1An.Text = "+1";
             this.buttonAjout1An.UseVisualStyleBackColor = true;
-            this.buttonAjout1An.Click += new System.EventHandler(this.buttonAjout1An_Click);
+            this.buttonAjout1An.Click += new System.EventHandler(this.ButtonAjout1AnClick);
             // 
             // dateTimeRenouvellemt
             // 
@@ -246,7 +246,7 @@
             this.textBoxNoMembre.Size = new System.Drawing.Size(38, 20);
             this.textBoxNoMembre.TabIndex = 1;
             this.textBoxNoMembre.TextChanged += new System.EventHandler(this.ValeurChampModifier);
-            this.textBoxNoMembre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNoMembre_KeyPress);
+            this.textBoxNoMembre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxNoMembreKeyPress);
             // 
             // comboBoxStatusMembre
             // 
@@ -380,7 +380,7 @@
             this.textBoxCourriel.Size = new System.Drawing.Size(332, 20);
             this.textBoxCourriel.TabIndex = 12;
             this.textBoxCourriel.TextChanged += new System.EventHandler(this.ValeurChampModifier);
-            this.textBoxCourriel.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxCourriel_Validating);
+            this.textBoxCourriel.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxCourrielValidating);
             // 
             // textBoxPrenom
             // 
@@ -441,7 +441,7 @@
             this.checkBoxSansNoMembre.TabIndex = 8;
             this.checkBoxSansNoMembre.Text = "Sans &no. membre";
             this.checkBoxSansNoMembre.UseVisualStyleBackColor = true;
-            this.checkBoxSansNoMembre.CheckedChanged += new System.EventHandler(this.controlSearhChanged);
+            this.checkBoxSansNoMembre.CheckedChanged += new System.EventHandler(this.ControlSearhChanged);
             // 
             // checkBoxAvecNoMembres
             // 
@@ -454,7 +454,7 @@
             this.checkBoxAvecNoMembres.TabIndex = 7;
             this.checkBoxAvecNoMembres.Text = "Ave&c no. membre";
             this.checkBoxAvecNoMembres.UseVisualStyleBackColor = true;
-            this.checkBoxAvecNoMembres.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
+            this.checkBoxAvecNoMembres.CheckStateChanged += new System.EventHandler(this.ControlSearhChanged);
             // 
             // checkBoxActives
             // 
@@ -467,7 +467,7 @@
             this.checkBoxActives.TabIndex = 5;
             this.checkBoxActives.Text = "Activ&es";
             this.checkBoxActives.UseVisualStyleBackColor = true;
-            this.checkBoxActives.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
+            this.checkBoxActives.CheckStateChanged += new System.EventHandler(this.ControlSearhChanged);
             // 
             // checkBoxEchue
             // 
@@ -480,7 +480,7 @@
             this.checkBoxEchue.TabIndex = 6;
             this.checkBoxEchue.Text = "Ech&ues";
             this.checkBoxEchue.UseVisualStyleBackColor = true;
-            this.checkBoxEchue.CheckStateChanged += new System.EventHandler(this.controlSearhChanged);
+            this.checkBoxEchue.CheckStateChanged += new System.EventHandler(this.ControlSearhChanged);
             // 
             // label12
             // 
@@ -520,8 +520,8 @@
             this.textBoxWhereClause.Name = "textBoxWhereClause";
             this.textBoxWhereClause.Size = new System.Drawing.Size(106, 20);
             this.textBoxWhereClause.TabIndex = 4;
-            this.textBoxWhereClause.TextChanged += new System.EventHandler(this.controlSearhChanged);
-            this.textBoxWhereClause.Leave += new System.EventHandler(this.controlSearhChanged);
+            this.textBoxWhereClause.TextChanged += new System.EventHandler(this.ControlSearhChanged);
+            this.textBoxWhereClause.Leave += new System.EventHandler(this.ControlSearhChanged);
             // 
             // button3
             // 
@@ -534,7 +534,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "&Delete";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.button3.Click += new System.EventHandler(this.ButtonDeleteClick);
             // 
             // buttonSave
             // 
@@ -547,7 +547,7 @@
             this.buttonSave.TabIndex = 1;
             this.buttonSave.Text = "&Save";
             this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
             // 
             // button1
             // 
@@ -560,7 +560,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "&New";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.buttonNew_Click);
+            this.button1.Click += new System.EventHandler(this.ButtonNewClick);
             // 
             // pictureBox1
             // 
@@ -600,8 +600,8 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Adhésions Folklore Outaouais";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1FormClosed);
+            this.Load += new System.EventHandler(this.Form1Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNoEnfants)).EndInit();
