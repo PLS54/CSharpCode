@@ -1,46 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml;
 
-namespace StripSamples
+namespace ConsoleApp1
 {
-    public partial class Form1 : Form
+    class Program
     {
-        public Form1()
+        static void Main(string[] args)
         {
-            InitializeComponent();
-            AllowDrop = true;
-            DragEnter += new DragEventHandler(Form1_DragEnter);
-            DragDrop += new DragEventHandler(Form1_DragDrop);
-
-        }
-        void Form1_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
-        }
-
-        void Form1_DragDrop(object sender, DragEventArgs e)
-        {
-            Color current = BackColor;
-            BackColor = Color.Red;
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            foreach (string file in files) {
-                Debug.WriteLine(file);
-                RemoveSamples(file);
+            bool quietMode = false;
+            if(args[0].Equals("-q", StringComparison.InvariantCultureIgnoreCase) ) {
+                quietMode = true;
             }
-            BackColor = current;
+            foreach(string arg in args) {
+                if (!arg.Equals("-q", StringComparison.InvariantCultureIgnoreCase)) {
+                    if (!quietMode) {
+                        Console.WriteLine($"Stripping samples off {arg}");
+                    }
+                    RemoveSamples(arg);
+                }
+            }
+            if (!quietMode) {
+                Console.WriteLine("...Press any key to exit");
+                Console.ReadKey();
+            }
         }
-
-        public static void RemoveSamples(string filename)
+        private static void RemoveSamples(string filename)
         {
             MemoryStream memStream = new MemoryStream(100);
             using (StreamReader sr = File.OpenText(filename)) {
