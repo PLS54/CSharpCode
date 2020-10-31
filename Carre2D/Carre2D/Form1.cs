@@ -78,21 +78,21 @@ namespace WindowsFormsApplication3
 			for (int i = 0; i <= 72; i++)
 			{
 				Danseurs[0].Moves.Add(null);
-				Danseurs[5].Moves.Add(null);
+				Danseurs[4].Moves.Add(null);
 				Danseurs[1].Moves.Add(new Move((i + 36) % 72));
-				Danseurs[4].Moves.Add(new Move(new Point(0, 0), i));
+				Danseurs[5].Moves.Add(new Move(new Point(0, 0), i));
 			}
 			for (int i = 0; i < 150; i += 3)
 			{
-				Danseurs[0].Moves.Add(new PLS.DanseTrad.Move(new Point(0, -3)));
-				Danseurs[1].Moves.Add(new PLS.DanseTrad.Move(new Point(0, -3)));
+				Danseurs[0].Moves.Add(new Move(new Point(0, -3)));
+				Danseurs[1].Moves.Add(new Move(new Point(0, -3)));
 				Danseurs[4].Moves.Add(null);
 				Danseurs[5].Moves.Add(null);
 			}
 			for (int i = 0; i < 75; i += 3)
 			{
-				Danseurs[0].Moves.Add(new PLS.DanseTrad.Move(new Point(0, 3)));
-				Danseurs[1].Moves.Add(new PLS.DanseTrad.Move(new Point(0, 3)));
+				Danseurs[0].Moves.Add(new Move(new Point(0, 3)));
+				Danseurs[1].Moves.Add(new Move(new Point(0, 3)));
 				Danseurs[4].Moves.Add(null);
 				Danseurs[5].Moves.Add(null);
 			}
@@ -100,21 +100,21 @@ namespace WindowsFormsApplication3
 			{
 				if (i > 50 && i <= 100)
 				{
-					Danseurs[4].Moves.Add(new PLS.DanseTrad.Move(new Point(-3, 0)));
-					Danseurs[5].Moves.Add(new PLS.DanseTrad.Move(new Point(3, 0)));
+					Danseurs[4].Moves.Add(new Move(new Point(3, 0)));
+					Danseurs[5].Moves.Add(new Move(new Point(-3, 0)));
 				}
 				else
 				{
 					Danseurs[4].Moves.Add(null);
 					Danseurs[5].Moves.Add(null);
 				}
-				Danseurs[0].Moves.Add(new PLS.DanseTrad.Move(new Point(0, -3)));
-				Danseurs[1].Moves.Add(new PLS.DanseTrad.Move(new Point(0, -3)));
+				Danseurs[0].Moves.Add(new Move(new Point(0, -3)));
+				Danseurs[1].Moves.Add(new Move(new Point(0, -3)));
 			}
 			for (int i = 0; i < 50; i += 3)
 			{
-				Danseurs[4].Moves.Add(new PLS.DanseTrad.Move(new Point(3, 0)));
-				Danseurs[5].Moves.Add(new PLS.DanseTrad.Move(new Point(-3, 0)));
+				Danseurs[4].Moves.Add(new Move(new Point(-3, 0)));
+				Danseurs[5].Moves.Add(new Move(new Point(3, 0)));
 			}
 			int ang0 = Danseurs[0].Angle;
 			int ang1 = Danseurs[1].Angle;
