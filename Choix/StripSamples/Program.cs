@@ -12,11 +12,19 @@ namespace StripSamples
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+			string[] temp = new string[args.Length];
+			int i = 0;
+			foreach(string arg in args)
+			{
+				//temp[i] = arg.Clone();
+			}
+			Form1 f = new Form1();
+			f.Args = args;
+            Application.Run(f);
         }
     }
 }

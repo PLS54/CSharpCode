@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -15,15 +16,31 @@ namespace StripSamples
 {
     public partial class Form1 : Form
     {
+		public string[] Args { private get; set; }
         public Form1()
         {
             InitializeComponent();
             AllowDrop = true;
             DragEnter += new DragEventHandler(Form1_DragEnter);
             DragDrop += new DragEventHandler(Form1_DragDrop);
-
         }
-        void Form1_DragEnter(object sender, DragEventArgs e)
+		private void Form1_Load(object sender, EventArgs e)
+		{
+		}
+		private void Form1_Shown(object sender, EventArgs e)
+		{
+			if (Args != null && Args.Length > 0)
+			{
+				foreach (string arg in Args)
+				{
+					RemoveSamples(arg);
+					textBoxList.Update();
+				}
+				Thread.Sleep(1000);
+				this.Close();
+			}
+		}
+		void Form1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
@@ -40,8 +57,9 @@ namespace StripSamples
             BackColor = current;
         }
 
-        private static void RemoveSamples(string filename)
+        private void RemoveSamples(string filename)
         {
+			textBoxList.Text += $"Processing {filename} - ";
             MemoryStream memStream = new MemoryStream(100);
             using (StreamReader sr = File.OpenText(filename)) {
                 String s = "";
@@ -64,10 +82,15 @@ namespace StripSamples
                 }
 
             }
+			if(nodesToRemove.Count > 0) {
+				textBoxList.Text += "Samples removed - ";
+			}
             foreach (XmlNode nodeToRemove in nodesToRemove) {
                 files.RemoveChild(nodeToRemove);
             }
             doc.Save(filename);
-        }
-    }
+			textBoxList.Text += $"Completed\r\n";
+		}
+
+	}
 }
