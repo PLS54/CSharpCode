@@ -28,36 +28,34 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-			this.textBoxList = new System.Windows.Forms.TextBox();
+			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
 			this.SuspendLayout();
 			// 
-			// textBoxList
+			// richTextBox1
 			// 
-			this.textBoxList.Location = new System.Drawing.Point(12, 12);
-			this.textBoxList.Multiline = true;
-			this.textBoxList.Name = "textBoxList";
-			this.textBoxList.Size = new System.Drawing.Size(935, 237);
-			this.textBoxList.TabIndex = 0;
+			this.richTextBox1.Location = new System.Drawing.Point(12, 12);
+			this.richTextBox1.Name = "richTextBox1";
+			this.richTextBox1.Size = new System.Drawing.Size(944, 290);
+			this.richTextBox1.TabIndex = 1;
+			this.richTextBox1.Text = "";
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(959, 261);
-			this.Controls.Add(this.textBoxList);
+			this.ClientSize = new System.Drawing.Size(968, 315);
+			this.Controls.Add(this.richTextBox1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Form1";
 			this.Text = "StripSamples";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.Shown += new System.EventHandler(this.Form1_Shown);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
 		#endregion
-
-		private System.Windows.Forms.TextBox textBoxList;
+		private System.Windows.Forms.RichTextBox richTextBox1;
 	}
 }
 

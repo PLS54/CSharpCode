@@ -34,7 +34,7 @@ namespace StripSamples
 				foreach (string arg in Args)
 				{
 					RemoveSamples(arg);
-					textBoxList.Update();
+					richTextBox1.Update();
 				}
 				Thread.Sleep(1000);
 				this.Close();
@@ -59,7 +59,8 @@ namespace StripSamples
 
         private void RemoveSamples(string filename)
         {
-			textBoxList.Text += $"Processing {filename} - ";
+			string textToShow = string.Empty;
+			textToShow = $"Processing {filename} - ";
             MemoryStream memStream = new MemoryStream(100);
             using (StreamReader sr = File.OpenText(filename)) {
                 String s = "";
@@ -83,14 +84,17 @@ namespace StripSamples
 
             }
 			if(nodesToRemove.Count > 0) {
-				textBoxList.Text += "Samples removed - ";
+				textToShow += "SAMPLE(S) removed - ";
 			}
             foreach (XmlNode nodeToRemove in nodesToRemove) {
                 files.RemoveChild(nodeToRemove);
             }
             doc.Save(filename);
-			textBoxList.Text += $"Completed\r\n";
+			textToShow += $"Completed";
+			Array.Resize<string>(ref rtbLines, rtbLines.Length + 1);
+			rtbLines[rtbLines.Length - 1] = textToShow;
+			richTextBox1.Lines = rtbLines;
 		}
-
+		private string[] rtbLines = new string[0];
 	}
 }
