@@ -12,18 +12,11 @@ namespace StripSamples
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
-            if (args.Length > 0) {
-
-                Console.WriteLine($"{args.Length} Stripping samples off {args[0]}");
-                Form1.RemoveSamples(args[0]);
-                Console.ReadKey();
-            } else {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
-            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
     }
 }

@@ -40,7 +40,7 @@ namespace StripSamples
             BackColor = current;
         }
 
-        public static void RemoveSamples(string filename)
+        private static void RemoveSamples(string filename)
         {
             MemoryStream memStream = new MemoryStream(100);
             using (StreamReader sr = File.OpenText(filename)) {
