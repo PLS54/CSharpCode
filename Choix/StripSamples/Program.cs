@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,15 +17,22 @@ namespace StripSamples
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-			string[] temp = new string[args.Length];
-			int i = 0;
-			foreach(string arg in args)
-			{
-				//temp[i] = arg.Clone();
+			if (args.Length > 0) {
+				Form1.RemoveSamples(args[0]);
+				ProcessStartInfo pci = new ProcessStartInfo();
+				pci.FileName = @"C:\Program Files\Newsbin\newsbinpro64.exe";
+				pci.Arguments = $"\"{args[0]}\"";
+				//pci.CreateNoWindow = true;
+				//pci.UseShellExecute = false;
+				//pci.WindowStyle = ProcessWindowStyle.Minimized;
+
+				Process.Start(pci);
+
 			}
-			Form1 f = new Form1();
-			f.Args = args;
-            Application.Run(f);
-        }
+			else
+			{
+				Application.Run(new Form1());
+			}
+		}
     }
 }

@@ -33,7 +33,7 @@ namespace StripSamples
 			{
 				foreach (string arg in Args)
 				{
-					RemoveSamples(arg);
+					RemoveSamples1(arg);
 					richTextBox1.Update();
 				}
 				Thread.Sleep(1000);
@@ -52,12 +52,47 @@ namespace StripSamples
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files) {
                 Debug.WriteLine(file);
-                RemoveSamples(file);
+                RemoveSamples1(file);
             }
             BackColor = current;
         }
+		public static void RemoveSamples(string filename)
+		{
+			MemoryStream memStream = new MemoryStream(100);
+			using (StreamReader sr = File.OpenText(filename))
+			{
+				String s = "";
+				while ((s = sr.ReadLine()) != null)
+				{
+					if (!s.StartsWith("<!DOCTYPE "))
+					{
+						byte[] bLine = Encoding.UTF8.GetBytes(s);
+						memStream.Write(bLine, 0, bLine.Length);
+					}
+				}
+			}
+			memStream.Seek(0, SeekOrigin.Begin);
+			XmlDocument doc = new XmlDocument();
+			doc.Load(memStream);
+			XmlNode files = doc.ChildNodes[1];
+			List<XmlNode> nodesToRemove = new List<XmlNode>();
+			foreach (XmlNode file in files)
+			{
+				string s = file.OuterXml;
+				if (file.NodeType == XmlNodeType.Element && file.Name.Equals("file") && (file.Attributes[2].Value.Contains("sample") || file.Attributes[2].Value.Contains("Sample")))
+				{
+					nodesToRemove.Add(file);
+				}
 
-        private void RemoveSamples(string filename)
+			}
+			foreach (XmlNode nodeToRemove in nodesToRemove)
+			{
+				files.RemoveChild(nodeToRemove);
+			}
+			doc.Save(filename);
+		}
+
+		private void RemoveSamples1(string filename)
         {
 			string textToShow = string.Empty;
 			textToShow = $"Processing {filename} - ";
