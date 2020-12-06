@@ -21,11 +21,8 @@ namespace WindowsFormsApplication1
 
         private void Choix_Load(object sender, EventArgs e)
         {
-
-            const string originalFile = @"files.txt";
             const string doneFile = @"passées.txt";
             //    
-            //string[] originalFileContent = ReadTextFile(originalFile);
             string[] doneContent = ReadTextFile(doneFile);
             string[] originalFileContent = new String[0];
             //
@@ -33,7 +30,10 @@ namespace WindowsFormsApplication1
                 if (!s.Equals(@"z:$RECYCLE.BIN", StringComparison.InvariantCulture) && !s.Equals(@"z:System Volume Information", StringComparison.InvariantCultureIgnoreCase)) {
                     if (s.Equals(@"z:new", StringComparison.InvariantCultureIgnoreCase)) {
                         foreach (string sInner in Directory.EnumerateDirectories(@"z:new")) {
-                            AddToArray(ref originalFileContent, sInner);
+							if (!sInner.StartsWith("_", StringComparison.InvariantCultureIgnoreCase))
+							{
+								AddToArray(ref originalFileContent, sInner);
+							}
                         }
                     } else {
                         AddToArray(ref originalFileContent, s);
